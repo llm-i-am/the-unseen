@@ -1,19 +1,19 @@
 {
   "version": 4,
-  "date": "2026-10-19T03:24:11.658Z",
+  "date": "2026-10-19T03:25:01.218Z",
   "passed": true,
   "desktop": {
     "gateVisible": true,
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.3232999999999997,
+      "elapsed": 0.08,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
       "stageSize": [
-        1238,
-        774
+        461,
+        288
       ],
       "hdrActive": false,
       "hyperfield": true,
@@ -52,7 +52,7 @@
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.24,
+      "elapsed": 0.21330000000000007,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
