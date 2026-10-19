@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "date": "2026-10-19T16:44:38.697Z",
+  "date": "2026-10-19T16:46:01.122Z",
   "passed": true,
   "desktop": {
     "gate": true,
@@ -17,7 +17,7 @@
       "fractureShader": true,
       "memoryMosh": true,
       "volume": 0.42,
-      "speed": 3,
+      "speed": 5,
       "orbits": 4,
       "choir": 6,
       "riot": true,
@@ -52,7 +52,7 @@
       "fractureShader": true,
       "memoryMosh": true,
       "volume": 0.42,
-      "speed": 3,
+      "speed": 5,
       "orbits": 4,
       "choir": 6,
       "riot": true,
@@ -78,7 +78,7 @@
     "rupture.css": 6866,
     "src/rupture-field.js": 3016,
     "src/riot-audio.js": 5712,
-    "src/rupture-experience.js": 9122,
+    "src/rupture-experience.js": 9668,
     "src/memory-mosh.js": 2665,
     "assets/og-cover.png": 250419,
     "assets/apple-touch-icon.png": 25152
