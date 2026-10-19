@@ -33,7 +33,7 @@
   let v=scenes[s.mode];setText("chapter",v[0]);$("sceneTitle").innerHTML=v[1];setText("sceneDescription",v[2]);
   $("titlebox").classList.remove("hide");clearTimeout(setMode.id);
   setMode.id=setTimeout(()=>$("titlebox").classList.add("hide"),4800);
-  audio.retune(s.mode);toast(v[0]);
+  audio.retune(s.mode);
  }
  function resize(){
   let dpr=Math.min(devicePixelRatio||1,mobile?1.25:1.75),w=Math.max(2,Math.floor(innerWidth*dpr*quality)),h=Math.max(2,Math.floor(innerHeight*dpr*quality));
