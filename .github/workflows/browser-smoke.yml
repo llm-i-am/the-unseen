@@ -27,6 +27,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Exercise desktop and mobile interaction
         run: node tests/browser-smoke.cjs
+      - name: Compile WGSL and probe WebGPU extended P3
+        run: node tests/hdr6-gpu-test.cjs
       - name: Publish browser artifacts with safe retry
         if: always()
         shell: bash
