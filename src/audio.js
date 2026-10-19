@@ -86,6 +86,8 @@ window.UnseenAudio=class UnseenAudio {
  setBreath(level){
   if(!this.ac||!this.active)return;
   const n=this.ac.currentTime,amount=Math.max(0,Math.min(1,level));
+  if(n-(this.lastBreathUpdate??-1)<.08)return;
+  this.lastBreathUpdate=n;
   this.noise.forEach((v,i)=>{
    v.filter.frequency.setTargetAtTime((i?420:160)+(i?780:260)*amount,n,.27);
   });
