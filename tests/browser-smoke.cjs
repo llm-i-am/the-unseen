@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path');const {chromium}=require('playwright');
 (async()=>{
- const report={version:5,date:new Date().toISOString(),passed:false,desktop:{},mobile:{},errors:[],assets:{}};
- for(const file of ['index.html','rupture.css','src/rupture-field.js','src/riot-audio.js','src/rupture-experience.js','src/memory-mosh.js','assets/og-cover.png','assets/apple-touch-icon.png']){
+ const report={version:6,date:new Date().toISOString(),passed:false,desktop:{},mobile:{},errors:[],assets:{}};
+ for(const file of ['index.html','rupture.css','src/rupture-field.js','src/riot-audio.js','src/rupture-experience.js','src/memory-mosh.js','src/hdr6-shader.js','src/hdr6-engine.js','hdr6.css','assets/og-cover.png','assets/apple-touch-icon.png']){
   report.assets[file]=fs.existsSync(file)?fs.statSync(file).size:0;
   if(!report.assets[file])report.errors.push('Missing asset '+file);
  }
@@ -24,37 +24,41 @@ const fs=require('node:fs'),path=require('node:path');const {chromium}=require('
      fractureShader:window.UNSEEN_SHADERS.fragment.includes('v5Breakage'),memoryMosh:!!window.UNSEEN_MOSH?.ready,volume:rt?.state.volume,
      speed:rt?.state.speed,orbits:rt?.audio?.hyper?.orbit?.length||0,choir:rt?.audio?.hyper?.choir?.length||0,
      riot:!!rt?.audio?.riot,fullscreenUIHidden:getComputedStyle(document.querySelector('.toolbar')).display==='none',
-     hudShown:document.getElementById('rxHUD').getAttribute('aria-hidden')==='false'};
+     hudShown:document.getElementById('rxHUD').getAttribute('aria-hidden')==='false',visibleHud:getComputedStyle(document.querySelector('.rx-corner')).display!=='none',hdr6:window.UNSEEN_HDR6?.mode||'missing',hdrCanvas:!!document.getElementById('hdr6'),hdrShader:window.UNSEEN_HDR6_WGSL?.includes('vec4<f32>'),legacyGpuPaused:rt?.state.hdrPrimary===true};
    });
    fs.mkdirSync('assets',{recursive:true});await page.screenshot({path:'assets/site-preview-'+label+'.jpg',type:'jpeg',quality:84});
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   // Double-tap the visual surface; the performance itself contains no visible UI.
+   await page.evaluate(()=>{
+     const stage=document.getElementById('stage');
+     for(let i=0;i<2;i++)stage.dispatchEvent(new PointerEvent('pointerup',{clientX:180,clientY:220,bubbles:true}));
+   });
    const menuShown=await page.locator('#rxMenu').getAttribute('aria-hidden')==='false';
    await page.locator('#rxNext').click({noWaitAfter:true});
    const next=await page.evaluate(()=>window.UNSEEN_IMMERSION.mode);
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxIntensity').click({noWaitAfter:true});
    const altered=await page.evaluate(()=>window.UNSEEN_IMMERSION.intensity);
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxPause').click({noWaitAfter:true});
    const paused=await page.evaluate(()=>window.UNSEEN_IMMERSION.paused);
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxPause').click({noWaitAfter:true});
    const resumed=await page.evaluate(()=>!window.UNSEEN_IMMERSION.paused);
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxComfort').click({noWaitAfter:true});
    const comfort=await page.evaluate(()=>window.UNSEEN_IMMERSION.reduced);
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxScience').click({noWaitAfter:true});
    const science=await page.locator('#science').getAttribute('aria-hidden')==='false';
    await page.locator('#closeScience').click({noWaitAfter:true});
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxRestart').click({noWaitAfter:true});
    const restarted=await page.evaluate(()=>window.UNSEEN_IMMERSION.elapsed<1.5);
-   await page.locator('#rxMenuButton').click({noWaitAfter:true});
+   await page.evaluate(()=>document.dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true})));
    await page.locator('#rxExit').click({noWaitAfter:true});
    const exited=await page.evaluate(()=>!window.UNSEEN_IMMERSION.running&&document.getElementById('rxGate').getAttribute('aria-hidden')==='false');
-   const pass=gate&&initial.running&&initial.version===5&&initial.shaderCompiled&&initial.fractureShader&&initial.speed>1
-     &&initial.hudShown&&initial.memoryMosh&&initial.fullscreenUIHidden&&initial.stageSize.every(x=>x>0)&&menuShown&&next!==0&&altered!==1
+   const pass=gate&&initial.running&&initial.version===6&&initial.shaderCompiled&&initial.fractureShader&&initial.speed>1
+     &&initial.hudShown&&!initial.visibleHud&&initial.hdrCanvas&&initial.hdrShader&&initial.memoryMosh&&initial.fullscreenUIHidden&&initial.stageSize.every(x=>x>0)&&menuShown&&next!==0&&altered!==1
      &&paused&&resumed&&comfort&&science&&restarted&&exited&&errors.length===0&&(label==='mobile'||initial.riot&&initial.orbits===4&&initial.choir===6);
    report[label]={gate,initial,menuShown,next,altered,paused,resumed,comfort,science,restarted,exited,pass,errors,logs};
    if(!pass)report.errors.push(label+' assertion failure');
