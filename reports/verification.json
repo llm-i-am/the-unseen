@@ -1,86 +1,12 @@
 {
-  "version": 3,
-  "date": "2026-10-19T02:47:05.746Z",
-  "passed": true,
-  "desktop": {
-    "gateVisible": true,
-    "originalEntryHidden": true,
-    "initial": {
-      "running": true,
-      "elapsed": 0.08,
-      "phase": "ARRIVE",
-      "mode": 0,
-      "backend": "WEBGL2 · DISPLAY P3",
-      "stageSize": [
-        1238,
-        774
-      ],
-      "hdrActive": false,
-      "intensity": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "titleHidden": true,
-      "toolbarHidden": true,
-      "progress": "scaleX(0.001)"
-    },
-    "menuShown": true,
-    "pace": [
-      5,
-      5
-    ],
-    "breathHidden": true,
-    "paused": true,
-    "resumed": true,
-    "prev": 0,
-    "advanced": 1,
-    "scienceOpened": true,
-    "restarted": true,
-    "exited": true,
-    "errors": []
-  },
-  "mobile": {
-    "gateVisible": true,
-    "originalEntryHidden": true,
-    "initial": {
-      "running": true,
-      "elapsed": 0.36,
-      "phase": "ARRIVE",
-      "mode": 0,
-      "backend": "WEBGL2 · DISPLAY P3",
-      "stageSize": [
-        265,
-        573
-      ],
-      "hdrActive": false,
-      "intensity": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "titleHidden": true,
-      "toolbarHidden": true,
-      "progress": "scaleX(0.001)"
-    },
-    "menuShown": true,
-    "pace": [
-      5,
-      5
-    ],
-    "breathHidden": true,
-    "paused": true,
-    "resumed": true,
-    "prev": 0,
-    "advanced": 1,
-    "scienceOpened": true,
-    "restarted": true,
-    "exited": true,
-    "errors": []
-  },
-  "errors": [],
+  "version": 4,
+  "date": "2026-10-19T02:47:57.510Z",
+  "passed": false,
+  "desktop": {},
+  "mobile": {},
+  "errors": [
+    "locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#imBegin')\n    - locator resolved to <button id=\"imBegin\" class=\"im-primary\">…</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n\n    at /home/runner/work/the-unseen/the-unseen/tests/browser-smoke.cjs:19:65"
+  ],
   "assets": {
     "assets/og-cover.png": 263180,
     "assets/og-alternative.png": 263927,
@@ -90,6 +16,11 @@
     "assets/icon-192.png": 27209,
     "assets/icon-512.png": 99070,
     "immersive.css": 8337,
-    "src/immersion.js": 12184
+    "src/immersion.js": 12184,
+    "src/hyperfield.js": 5865,
+    "src/hyperaudio.js": 6923,
+    "src/paradox.js": 1814,
+    "src/hyperbridge.js": 1812,
+    "src/constellation.js": 4865
   }
 }
