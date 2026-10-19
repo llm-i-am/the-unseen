@@ -25,7 +25,7 @@
   ["ACT 07 — NEURAL SEA","A trillion<br><i>quiet signals.</i>","Listen to a world that exists beneath the world."],
   ["ACT 08 — EVENT HORIZON","Beyond<br><i>the observer.</i>","Light collects at the boundary of what can be known."]
  ];
- function toast(message){const t=$("toast");t.textContent=message;t.classList.add("on");clearTimeout(toast.id);toast.id=setTimeout(()=>t.classList.remove("on"),2400)}
+ function toast(message){if(document.body.classList.contains("experience-live"))return;const t=$("toast");t.textContent=message;t.classList.add("on");clearTimeout(toast.id);toast.id=setTimeout(()=>t.classList.remove("on"),2400)}
  const setText=(id,value)=>$(id).textContent=value;
  function setMode(i){
   s.mode=(i+8)%8;
