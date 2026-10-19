@@ -1,13 +1,13 @@
 {
   "version": 4,
-  "date": "2026-10-19T02:53:19.408Z",
-  "passed": true,
+  "date": "2026-10-19T02:54:26.211Z",
+  "passed": false,
   "desktop": {
     "gateVisible": true,
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.4366000000000002,
+      "elapsed": 0.6367999999999993,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -52,7 +52,7 @@
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.09670000000000005,
+      "elapsed": 0,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -92,7 +92,9 @@
     "exited": true,
     "errors": []
   },
-  "errors": [],
+  "errors": [
+    "mobile assertions failed"
+  ],
   "assets": {
     "assets/og-cover.png": 263180,
     "assets/og-alternative.png": 263927,
@@ -102,7 +104,7 @@
     "assets/icon-192.png": 27209,
     "assets/icon-512.png": 99070,
     "immersive.css": 8337,
-    "src/immersion.js": 12184,
+    "src/immersion.js": 12239,
     "src/hyperfield.js": 5865,
     "src/hyperaudio.js": 6923,
     "src/paradox.js": 1814,
