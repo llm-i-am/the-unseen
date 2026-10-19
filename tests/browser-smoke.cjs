@@ -2,8 +2,8 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require('playwright');
 (async () => {
- const report = {version:3, date:new Date().toISOString(), passed:false, desktop:{}, mobile:{}, errors:[], assets:{}};
- const required=['assets/og-cover.png','assets/og-alternative.png','assets/apple-touch-icon.png','assets/favicon-32.png','favicon.ico','assets/icon-192.png','assets/icon-512.png','immersive.css','src/immersion.js'];
+ const report = {version:4, date:new Date().toISOString(), passed:false, desktop:{}, mobile:{}, errors:[], assets:{}};
+ const required=['assets/og-cover.png','assets/og-alternative.png','assets/apple-touch-icon.png','assets/favicon-32.png','favicon.ico','assets/icon-192.png','assets/icon-512.png','immersive.css','src/immersion.js','src/hyperfield.js','src/hyperaudio.js','src/paradox.js','src/hyperbridge.js','src/constellation.js'];
  for(const f of required){report.assets[f]=fs.existsSync(f)?fs.statSync(f).size:0;if(!report.assets[f])report.errors.push('Missing '+f)}
  let browser;
  try{
@@ -21,7 +21,7 @@ const { chromium } = require('playwright');
    const initial=await page.evaluate(()=>{
     let rt=window.UNSEEN_RUNTIME,im=window.UNSEEN_IMMERSION,stage=document.getElementById('stage');
     return {running:im?.running,elapsed:im?.elapsed,phase:im?.phase,mode:im?.mode,backend:document.getElementById('backend').textContent,
-      stageSize:[stage.width,stage.height],hdrActive:rt?.state.hdr,intensity:[rt?.state.density,rt?.state.energy,rt?.state.flux,rt?.state.depth],
+      stageSize:[stage.width,stage.height],hdrActive:rt?.state.hdr,hyperfield:!!window.UNSEEN_VOLUME_IV?.ready,particles:window.UNSEEN_CONSTELLATION?.count,orbiters:rt?.audio?.hyper?.orbit?.length,choir:rt?.audio?.hyper?.choir?.length,risset:rt?.audio?.risset?.tones?.length,audioActive:rt?.audio?.active,intensity:[rt?.state.density,rt?.state.energy,rt?.state.flux,rt?.state.depth],
       titleHidden:getComputedStyle(document.querySelector('.titlebox')).display==='none',
       toolbarHidden:getComputedStyle(document.querySelector('.toolbar')).display==='none',
       progress:document.getElementById('imProgress').style.transform
@@ -61,7 +61,7 @@ const { chromium } = require('playwright');
    const exited=await page.evaluate(()=>!window.UNSEEN_IMMERSION.running&&document.getElementById('immersionGate').getAttribute('aria-hidden')==='false');
    report[label]={gateVisible,originalEntryHidden,initial,menuShown,pace,breathHidden,paused,resumed,prev,advanced,scienceOpened,restarted,exited,errors};
    const assertion=gateVisible&&originalEntryHidden&&initial.running&&initial.elapsed>0&&initial.stageSize[0]>0&&initial.stageSize[1]>0&&initial.titleHidden&&initial.toolbarHidden
-      &&initial.intensity.every(n=>n===1)&&menuShown&&pace.join(',')==='5,5'&&breathHidden&&paused&&resumed&&advanced!==(prev)&&scienceOpened&&restarted&&exited&&errors.length===0;
+      &&initial.intensity.every(n=>n===1)&&initial.backend.startsWith('WEBGL2')&&initial.hyperfield&&initial.particles>=100&&initial.orbiters===4&&initial.choir===6&&initial.risset===8&&(label==='mobile'||initial.audioActive)&&menuShown&&pace.join(',')==='5,5'&&breathHidden&&paused&&resumed&&advanced!==(prev)&&scienceOpened&&restarted&&exited&&errors.length===0;
    if(!assertion)report.errors.push(label+' assertions failed');
    if(errors.length)report.errors.push(label+' runtime: '+errors.join('; '));
    await page.close();
