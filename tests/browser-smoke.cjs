@@ -16,7 +16,7 @@ const { chromium } = require('playwright');
    await page.waitForTimeout(350);
    const gateVisible=await page.locator('#imBegin').isVisible();
    const originalEntryHidden=await page.locator('#entry').evaluate(el=>getComputedStyle(el).display==='none');
-   await page.locator(label==='desktop'?'#imBegin':'#imSilent').click({timeout:15000});
+   await page.locator(label==='desktop'?'#imBegin':'#imSilent').click({timeout:20000,noWaitAfter:true});
    await page.waitForTimeout(2100);
    const initial=await page.evaluate(()=>{
     let rt=window.UNSEEN_RUNTIME,im=window.UNSEEN_IMMERSION,stage=document.getElementById('stage');
