@@ -1,34 +1,83 @@
 {
-  "date": "2026-10-19T02:19:27.354Z",
+  "version": 3,
+  "date": "2026-10-19T02:26:00.850Z",
   "passed": true,
   "desktop": {
-    "backend": "WEBGL2 · DISPLAY P3",
-    "stageWidth": 1238,
-    "stageHeight": 774,
-    "fps": "41 FPS",
-    "modes": 8,
-    "volume": "32",
-    "selected": "7",
-    "settingsOpened": true,
+    "gateVisible": true,
+    "originalEntryHidden": true,
+    "initial": {
+      "running": true,
+      "elapsed": 0.37659999999999993,
+      "phase": "ARRIVE",
+      "mode": 0,
+      "backend": "WEBGL2 · DISPLAY P3",
+      "stageSize": [
+        1238,
+        774
+      ],
+      "hdrActive": false,
+      "intensity": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "titleHidden": true,
+      "toolbarHidden": true,
+      "progress": "scaleX(0.001)"
+    },
+    "menuShown": true,
+    "pace": [
+      5,
+      5
+    ],
+    "breathHidden": true,
+    "paused": true,
+    "resumed": true,
+    "prev": 0,
+    "advanced": 1,
     "scienceOpened": true,
-    "glassesOpened": true,
-    "tourStarted": true,
-    "soundStarted": true,
+    "restarted": true,
+    "exited": true,
     "errors": []
   },
   "mobile": {
-    "backend": "WEBGL2 · DISPLAY P3",
-    "stageWidth": 237,
-    "stageHeight": 514,
-    "fps": "20 FPS",
-    "modes": 8,
-    "volume": "32",
-    "selected": "7",
-    "settingsOpened": true,
+    "gateVisible": true,
+    "originalEntryHidden": true,
+    "initial": {
+      "running": true,
+      "elapsed": 0.40670000000000006,
+      "phase": "ARRIVE",
+      "mode": 0,
+      "backend": "WEBGL2 · DISPLAY P3",
+      "stageSize": [
+        265,
+        573
+      ],
+      "hdrActive": false,
+      "intensity": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "titleHidden": true,
+      "toolbarHidden": true,
+      "progress": "scaleX(0.001)"
+    },
+    "menuShown": true,
+    "pace": [
+      5,
+      5
+    ],
+    "breathHidden": true,
+    "paused": true,
+    "resumed": true,
+    "prev": 0,
+    "advanced": 1,
     "scienceOpened": true,
-    "glassesOpened": true,
-    "tourStarted": true,
-    "soundStarted": true,
+    "restarted": true,
+    "exited": true,
     "errors": []
   },
   "errors": [],
@@ -39,6 +88,8 @@
     "assets/favicon-32.png": 1848,
     "favicon.ico": 6229,
     "assets/icon-192.png": 27209,
-    "assets/icon-512.png": 99070
+    "assets/icon-512.png": 99070,
+    "immersive.css": 8337,
+    "src/immersion.js": 12099
   }
 }
