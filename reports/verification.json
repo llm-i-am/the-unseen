@@ -1,13 +1,13 @@
 {
   "version": 4,
-  "date": "2026-10-19T02:54:26.211Z",
-  "passed": false,
+  "date": "2026-10-19T03:24:11.658Z",
+  "passed": true,
   "desktop": {
     "gateVisible": true,
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.6367999999999993,
+      "elapsed": 0.3232999999999997,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -52,7 +52,7 @@
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0,
+      "elapsed": 0.24,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -92,9 +92,7 @@
     "exited": true,
     "errors": []
   },
-  "errors": [
-    "mobile assertions failed"
-  ],
+  "errors": [],
   "assets": {
     "assets/og-cover.png": 263180,
     "assets/og-alternative.png": 263927,
