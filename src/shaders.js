@@ -9,7 +9,7 @@ fragment: `#version 300 es
 precision highp float;
 out vec4 outColor;
 uniform vec2 uResolution,uPointer,uTouchPoint;
-uniform float uTime,uMode,uEnergy,uDensity,uDepth,uFlux,uStateA,uStateB,uOnOff,uBand,uBeat,uTouchAge,uPalette,uSpeed;
+uniform float uTime,uMode,uEnergy,uDensity,uDepth,uFlux,uStateA,uStateB,uOnOff,uBand,uBeat,uTouchAge,uPalette,uSpeed,uAnaglyph;
 #define PI 3.141592653589793
 #define TAU 6.283185307179586
 float sat(float x){return clamp(x,0.,1.);}
@@ -181,6 +181,12 @@ void main(){
  else if(region<5.5)col=fold(p,t,a,b);
  else if(region<6.5)col=neuralSea(p,t,a,b);
  else col=eventHorizon(p,t,a,b);
+ if(uAnaglyph>.5 && region>.5 && region<1.5){
+  float r=length(p),ang=atan(p.y,p.x);
+  float left=pow(sat(.5+.5*cos(p.x*14.+sin(p.y*7.0)*1.7)),8.);
+  float right=pow(sat(.5+.5*cos(r*39.+ang*11.+t*.16)),12.);
+  col=vec3(.5*left,.39*right,.54*right)+col*.035;
+ }
  float warp=fbm(p*2.+t*.034);
  vec3 background=palette(warp*.14+.14)*(.005+.014*exp(-length(p)*1.8));
  vec3 star=stars(p+vec2(t*.002),t)*.3;
