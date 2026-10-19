@@ -24,7 +24,6 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Exercise desktop and mobile interaction
         run: node tests/browser-smoke.cjs
-        continue-on-error: true
       - name: Commit screenshots and verification report
         if: always()
         run: |
