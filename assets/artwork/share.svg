@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
 <defs>
- <radialGradient id="bg"><stop stop-color="#1b194a"/><stop offset=".48" stop-color="#0a0d22"/><stop offset="1" stop-color="#02050c"/></radialGradient>
- <radialGradient id="violet"><stop stop-color="#b16bff" stop-opacity=".9"/><stop offset=".32" stop-color="#614bce" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
- <radialGradient id="cyan"><stop stop-color="#7debfa" stop-opacity=".75"/><stop offset=".36" stop-color="#158fab" stop-opacity=".24"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
- <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#abf7ff"/><stop offset=".34" stop-color="#6fb1ff"/><stop offset=".6" stop-color="#c096ff"/><stop offset="1" stop-color="#ec8cf0"/></linearGradient>
+ <radialGradient id="bg"><stop stop-color="#27051f"/><stop offset=".48" stop-color="#140611"/><stop offset="1" stop-color="#02050c"/></radialGradient>
+ <radialGradient id="violet"><stop stop-color="#ff1279" stop-opacity=".9"/><stop offset=".32" stop-color="#f04433" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+ <radialGradient id="cyan"><stop stop-color="#fdeb39" stop-opacity=".75"/><stop offset=".36" stop-color="#ec487b" stop-opacity=".24"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+ <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2ff14"/><stop offset=".34" stop-color="#ff8c1f"/><stop offset=".6" stop-color="#ff288d"/><stop offset="1" stop-color="#04f5dd"/></linearGradient>
  <linearGradient id="text" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f9fbff"/><stop offset="1" stop-color="#b3d1ff"/></linearGradient>
  <filter id="blur"><feGaussianBlur stdDeviation="35"/></filter><filter id="glow"><feGaussianBlur stdDeviation="10"/></filter>
  <clipPath id="clip"><rect width="1200" height="630"/></clipPath>
@@ -30,10 +30,10 @@
 <circle cx="1006" cy="109" r="2"/><circle cx="664" cy="121" r="1.5"/><circle cx="1042" cy="470" r="2.1"/><circle cx="940" cy="547" r="1.5"/>
 </g>
 </g>
-<text x="82" y="94" fill="#9dc7e8" font-size="17" font-family="sans-serif" letter-spacing="5">THE CONSCIOUSNESS OBSERVATORY</text>
-<text x="76" y="292" fill="url(#text)" font-family="Georgia,serif" font-size="117" letter-spacing="-7">THE</text>
-<text x="76" y="396" fill="url(#text)" font-family="Georgia,serif" font-size="117" letter-spacing="-7">UNSEEN</text>
+<text x="82" y="94" fill="#9dc7e8" font-size="17" font-family="sans-serif" letter-spacing="5">THE UNSEEN / VOLUME 05</text>
+<text x="72" y="292" fill="#f1ff00" font-family="sans-serif" font-weight="900" font-size="104" letter-spacing="-5">NO SAFE</text>
+<text x="73" y="391" fill="#f5fbff" font-family="sans-serif" font-weight="900" font-size="106" letter-spacing="-6">CENTER.</text>
 <path d="M80 438H410" stroke="#a8caff" stroke-opacity=".6"/>
-<text x="81" y="486" font-family="sans-serif" font-size="20" letter-spacing="5" fill="#d4e5ff">A 60ms OBSERVATORY</text>
-<text x="82" y="539" font-family="sans-serif" font-size="16" fill="#93a9c9" letter-spacing="1">EIGHT UNIVERSES OF LIGHT AND SOUND</text>
+<text x="81" y="486" font-family="sans-serif" font-size="20" letter-spacing="5" fill="#d4e5ff">ENTER THE RUPTURE</text>
+<text x="82" y="539" font-family="sans-serif" font-size="16" fill="#93a9c9" letter-spacing="1">16 ACTS / LIVE LIGHT / INDUSTRIAL SOUND</text>
 </svg>
