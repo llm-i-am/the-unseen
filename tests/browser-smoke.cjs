@@ -30,7 +30,7 @@ const {chromium}=require('playwright');
    await page.waitForTimeout(900);
    const state=await page.evaluate(()=>({backend:document.getElementById('backend').textContent,stageWidth:document.getElementById('stage').width,stageHeight:document.getElementById('stage').height,fps:document.getElementById('fps').textContent,modes:document.querySelectorAll('.mode').length,volume:document.getElementById('volume').value}));
    fs.mkdirSync('assets',{recursive:true});
-   await page.screenshot({path:'assets/site-preview-'+label+'.png'});
+   await page.screenshot({path:'assets/site-preview-'+label+'.jpg',type:'jpeg',quality:82});
    report[label]={...state,selected,settingsOpened:visible,scienceOpened:science==='false',errors:runtime};
    if(runtime.length)report.errors.push(label+' JS errors: '+runtime.join('; '));
    if(selected!=='7'||!visible||science!=='false'||state.modes!==8||!state.stageWidth||!state.stageHeight||state.volume!=='32')report.errors.push(label+' UI assertion failed');
