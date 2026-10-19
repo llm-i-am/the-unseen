@@ -214,7 +214,7 @@
   cn.addEventListener("webglcontextlost",e=>{e.preventDefault();prg=null;setText("backend","RESTARTING GPU")});
   cn.addEventListener("webglcontextrestored",()=>{gl=null;prg=null;initGL()});
  }
- window.UNSEEN_RUNTIME={state:s,setMode,enableAudio:()=>setAudio(true),disableAudio:()=>setAudio(false),audio,setHDR,setReduce,resize,stopTour:()=>{if(tourOn)toggleTour(false)}};
+ window.UNSEEN_RUNTIME={state:s,setMode,enableAudio:()=>setAudio(true),disableAudio:()=>setAudio(false),audio,setHDR,setReduce,resize,stopTour:()=>{if(tourOn)toggleTour(false)},hdrReady:()=>gpuReady};
  install();initGL();initHDR().then(ok=>{if(ok&&!s.reduced){s.hdr=true;hdr.style.display="block";setToggle("hdrBtn",true);setText("backend",backend+" · HDR");}});
  requestAnimationFrame(render);
  setTimeout(()=>$("titlebox").classList.add("hide"),6900);
