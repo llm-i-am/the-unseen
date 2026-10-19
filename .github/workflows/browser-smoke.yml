@@ -9,6 +9,9 @@ on:
       - 'tests/**'
       - '.github/workflows/browser-smoke.yml'
   workflow_dispatch:
+concurrency:
+  group: unseen-browser-smoke-main
+  cancel-in-progress: true
 permissions:
   contents: write
 jobs:
@@ -47,7 +50,7 @@ jobs:
             done
             git add -f reports/verification.json assets/site-preview-desktop.jpg assets/site-preview-mobile.jpg 2>/dev/null || true
             if git diff --cached --quiet; then exit 0; fi
-            git commit -m "Record Vol III desktop/mobile immersion browser checks"
+            git commit -m "Record latest Volume VI desktop/mobile HDR immersion browser checks"
             if git push origin HEAD:main; then exit 0; fi
             echo "Concurrent push. Retry $attempt/5..."
             sleep 3
