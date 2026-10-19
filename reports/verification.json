@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-19T01:41:28.599Z",
+  "passed": true,
+  "desktop": {
+    "backend": "WEBGL2 · DISPLAY P3",
+    "stageWidth": 1238,
+    "stageHeight": 774,
+    "fps": "41 FPS",
+    "modes": 8,
+    "volume": "32",
+    "selected": "7",
+    "settingsOpened": true,
+    "scienceOpened": true,
+    "errors": []
+  },
+  "mobile": {
+    "backend": "WEBGL2 · DISPLAY P3",
+    "stageWidth": 265,
+    "stageHeight": 573,
+    "fps": "42 FPS",
+    "modes": 8,
+    "volume": "32",
+    "selected": "7",
+    "settingsOpened": true,
+    "scienceOpened": true,
+    "errors": []
+  },
+  "errors": [],
+  "assets": {
+    "assets/og-cover.png": 263180,
+    "assets/og-alternative.png": 263927,
+    "assets/apple-touch-icon.png": 25152,
+    "assets/favicon-32.png": 1848,
+    "favicon.ico": 6229,
+    "assets/icon-192.png": 27209,
+    "assets/icon-512.png": 99070
+  }
+}
