@@ -1,13 +1,13 @@
 {
   "version": 3,
-  "date": "2026-10-19T02:28:45.307Z",
+  "date": "2026-10-19T02:28:46.806Z",
   "passed": true,
   "desktop": {
     "gateVisible": true,
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.3133,
+      "elapsed": 0.38,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -46,7 +46,7 @@
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.4734,
+      "elapsed": 0.26,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -90,6 +90,6 @@
     "assets/icon-192.png": 27209,
     "assets/icon-512.png": 99070,
     "immersive.css": 8337,
-    "src/immersion.js": 12099
+    "src/immersion.js": 12184
   }
 }
