@@ -6,22 +6,22 @@ const $=id=>document.getElementById(id),rt=window.UNSEEN_RUNTIME;
 if(!rt)return;
 const s=rt.state,osReduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
 const acts=[
-["WRONG DOOR","//",0,2,3.0,18,"THERE IS NO SAFE CENTER."],
-["DOUBLE EXPOSURE","◈",1,0,3.7,15,"TWO WORLDS. ZERO AGREEMENT."],
-["TEETH OF LIGHT","✳",5,2,4.8,17,"LOOK THROUGH THE CUT."],
-["INFINITE WRONG","∞",2,1,4.4,18,"KEEP FALLING UP."],
-["THE ROOM BENDS","⌁",4,0,4.1,21,"THE WALLS ARE LISTENING."],
-["ECHOES OF YOU","◌",3,2,4.3,14,"WHICH ONE IS THE GHOST?"],
-["FAULT LINE","〽",5,1,5.2,18,"EVERY EDGE IS LYING."],
-["NERVE STORM","⁂",6,2,4.2,22,"SIGNAL / NOISE / SIGNAL"],
-["FALSE HORIZON","◉",7,0,3.6,19,"YOUR EYES HAVE LOST THE MAP."],
-["NO EXIT","×",1,2,5.1,14,"IT WAS NEVER A ROOM."],
-["CRYSTAL DAMAGE","◇",2,0,4.5,17,"THE FRACTURE IS THE IMAGE."],
-["DEEPER","↓",0,1,5.6,21,"STOP LOOKING FOR THE BOTTOM."],
-["CHROME DREAM","✶",4,2,4.4,18,"THE MACHINE REMEMBERS YOU."],
-["TWIN IMPOSSIBLE","↭",3,1,5.0,16,"BOTH ARE TRUE. NEITHER IS REAL."],
-["EVENT COLLAPSE","⊗",7,2,5.4,24,"THE WORLD BLINKS. YOU DO NOT."],
-["AFTER THE IMAGE","∴",6,0,3.0,22,"WHAT REMAINS WHEN IT LEAVES?"]
+["WRONG DOOR","//",0,2,5.0,8,"THERE IS NO SAFE CENTER."],
+["DOUBLE EXPOSURE","◈",1,0,5.6,7,"TWO WORLDS. ZERO AGREEMENT."],
+["TEETH OF LIGHT","✳",5,2,6.2,8,"LOOK THROUGH THE CUT."],
+["INFINITE WRONG","∞",2,1,5.8,7,"KEEP FALLING UP."],
+["THE ROOM BENDS","⌁",4,0,5.2,8,"THE WALLS ARE LISTENING."],
+["ECHOES OF YOU","◌",3,2,5.9,7,"WHICH ONE IS THE GHOST?"],
+["FAULT LINE","〽",5,1,6.4,8,"EVERY EDGE IS LYING."],
+["NERVE STORM","⁂",6,2,6.2,8,"SIGNAL / NOISE / SIGNAL"],
+["FALSE HORIZON","◉",7,0,6.0,7,"YOUR EYES HAVE LOST THE MAP."],
+["NO EXIT","×",1,2,5.7,7,"IT WAS NEVER A ROOM."],
+["CRYSTAL DAMAGE","◇",2,0,6.1,8,"THE FRACTURE IS THE IMAGE."],
+["DEEPER","↓",0,1,6.0,7,"STOP LOOKING FOR THE BOTTOM."],
+["CHROME DREAM","✶",4,2,5.9,8,"THE MACHINE REMEMBERS YOU."],
+["TWIN IMPOSSIBLE","↭",3,1,6.2,7,"BOTH ARE TRUE. NEITHER IS REAL."],
+["EVENT COLLAPSE","⊗",7,2,6.2,8,"THE WORLD BLINKS. YOU DO NOT."],
+["AFTER THE IMAGE","∴",6,0,5.6,7,"WHAT REMAINS WHEN IT LEAVES?"]
 ];
 const duration=acts.reduce((n,c)=>n+c[5],0);
 document.body.insertAdjacentHTML("beforeend",`
@@ -67,12 +67,11 @@ function applyAct(i){
  s.energy=comfort?.52:1;s.depth=comfort?.44:1;s.flux=comfort?.34:1;
  s.coupling=chapter%3===0?.33:.11;
  s.breath=.46+((chapter*7)%5)*.08;
- if(rt.audio.riot)rt.audio.riot.tempo=(intensity===0?100:116+chapter%5*11+(intensity===2?20:0));
+ if(rt.audio.riot)rt.audio.riot.tempo=(intensity===0?128:155+chapter%6*9+(intensity===2?14:0));
  $("rxChapter").textContent=name;$("rxGlyph").textContent=glyph;$("rxLine").textContent=line;
  $("rxIndex").textContent=String(chapter+1).padStart(2,"0")+" / "+acts.length;
  $("rxTitleBurst").classList.remove("rx-on");
- void $("rxTitleBurst").offsetWidth;$("rxTitleBurst").classList.add("rx-on");
- clearTimeout(burstTimer);burstTimer=setTimeout(()=>$("rxTitleBurst").classList.remove("rx-on"),2250);
+ clearTimeout(burstTimer);burstTimer=setTimeout(()=>$("rxTitleBurst").classList.remove("rx-on"),0);
 }
 function actAt(t){let x=t%duration;for(let i=0;i<acts.length;i++){x-=acts[i][5];if(x<0)return i;}return acts.length-1;}
 function loop(now){
@@ -90,7 +89,7 @@ function loop(now){
 }
 function start(withSound){
  if(running)return;
- document.body.classList.add("experience-live","rx-live");
+ document.body.classList.add("experience-live","rx-live","v6-hudless");
  $("toast")?.classList.remove("on");
  try{document.documentElement.requestFullscreen?.({navigationUI:"hide"})?.catch(()=>{})}catch{}
  if("wakeLock" in navigator)navigator.wakeLock.request("screen").then(x=>wake=x).catch(()=>{});
@@ -105,7 +104,7 @@ function exit(){
  running=false;paused=false;s.paused=false;rt.disableAudio();
  if(wake){wake.release().catch(()=>{});wake=null;}
  if(document.fullscreenElement)document.exitFullscreen?.().catch(()=>{});
- document.body.classList.remove("experience-live","rx-live");
+ document.body.classList.remove("experience-live","rx-live","v6-hudless");
  $("rxGate").setAttribute("aria-hidden","false");$("rxHUD").setAttribute("aria-hidden","true");toggleMenu(false);
 }
 function setComfort(on){
@@ -126,12 +125,24 @@ $("rxComfort").addEventListener("click",()=>{setComfort(!comfort);toggleMenu(fal
 $("rxScience").addEventListener("click",()=>{$("help").click();toggleMenu(false)});
 $("rxRestart").addEventListener("click",()=>{elapsed=0;offset=0;chapter=-1;applyAct(0);toggleMenu(false)});
 $("rxExit").addEventListener("click",exit);
-document.addEventListener("keydown",e=>{if(!running)return;if(e.key==="Escape"&&!document.fullscreenElement)toggleMenu(!menu);
+document.addEventListener("keydown",e=>{if(!running)return;if(e.key==="Escape")toggleMenu(!menu);
  if(e.key==="ArrowRight")$("rxNext").click();
  if(e.key===" "){e.preventDefault();$("rxPause").click();}
 });
 document.addEventListener("visibilitychange",()=>{last=performance.now();if(!document.hidden&&running&&"wakeLock"in navigator)navigator.wakeLock.request("screen").then(x=>wake=x).catch(()=>{})});
 window.addEventListener("pagehide",()=>{if(wake)wake.release().catch(()=>{})});
 if(osReduce)setComfort(true);
+// A clean, fully unobstructed experience. Two-finger touch or a deliberate double-tap opens controls.
+let lastTap=0,lastTapX=0,lastTapY=0;
+document.addEventListener("touchstart",event=>{
+ if(running&&event.touches.length===2){event.preventDefault();toggleMenu(!menu);}
+},{passive:false});
+document.addEventListener("pointerup",event=>{
+ if(!running||event.target.closest("button,.rx-menu"))return;
+ const now=performance.now();
+ const close=Math.hypot(event.clientX-lastTapX,event.clientY-lastTapY)<45;
+ if(close&&now-lastTap<350){toggleMenu(!menu);lastTap=0;}
+ else{lastTap=now;lastTapX=event.clientX;lastTapY=event.clientY;}
+},{passive:true});
 window.UNSEEN_IMMERSION={get running(){return running},get elapsed(){return elapsed},get mode(){return chapter},get paused(){return paused},get soundEnabled(){return sound},get intensity(){return intensity},get reduced(){return comfort},get version(){return 5}};
 })();
