@@ -4,6 +4,44 @@ An interactive, eight-world audiovisual observatory inspired by the October 2026
 
 **Expected public Pages URL (after you enable Pages):** https://llm-i-am.github.io/the-unseen/
 
+## Volume IV: Infinite Worlds / A Psychoacoustic Odyssey
+
+The site now combines two independently organized sensory systems into a deeper, spatially coherent experience. Everything remains **procedural, local and dependency-free**.
+
+### Twelve major new visual/audio systems
+
+- **Hyperfield optical architecture:** eight scene-specific additions to the original GLSL worlds, including nested impossible orbit paths, cross-patch opposing hypotheses, quasi-periodic Lissajous figures, double-exposure perspective, infinite luminous vaults, recursive folded space, bidirectional optic flow and gravitational lensing. All are original math/shaders.
+- **Dual-direction optic flow:** two point-cloud strata travel in contradictory directions with slow orbital drift. This is inspired by research on *vection*, an illusion of self-motion, rather than presented as a proven way to increase conscious access.
+- **Chromatic depth and lensing:** cyan/violet edge disparity supports perceived layer separation without rapidly alternating full-frame brightness.
+- **Sound-reactive shader space:** frequency bands are slowly integrated into geometric motion and refraction, while physical light levels remain continuously graded. Auditory timing changes *form*, not dangerous large-area flashes.
+- **Dual-world soundscape:** four continuously orbiting **3D HRTF PannerNode** sound emitters, two counter-moving spatial populations, each with distinct harmonic relationships.
+- **Six-voice additive choir:** gently detuned, low-pass-filtered tones form a harmonic bed behind the original sixteen partial oscillators, moving between apparent depths.
+- **Stochastic crystalline score:** procedurally generated, decaying three-part chimes appear at long non-periodic intervals and accompany world transitions; no pre-recorded samples.
+- **Risset-like perpetual ascent:** eight windowed carriers migrate through four octaves to form a slowly rising or falling pitch paradox. Inspired by auditory Shepard/Risset illusions, **not a brainwave-frequency protocol**.
+- **Breath-linked movement:** 4/6 guided breathing drives spatial extent, atmospheric filters and the UI halo. No forced holds, rapid breathing or respiratory claims.
+- **Stage-aware constellation engine:** an additional adaptive 2D depth field stays separate from WebGL, providing optic flow and fine-detail persistence on displays of different size.
+- **Cross-modal binding:** changes in the music, lighting geometry, and journey stages intentionally co-occur to create a cohesive audiovisual event. This is design informed by audiovisual temporal-integration research, **not a measured therapeutic effect**.
+- **Advanced compatibility:** automatic WebGPU HDR where supported, display-P3-capable WebGL2, adaptive GPU quality, 2D fallback, reduced motion and full sound opt-out.
+
+### Scientific grounding and limitations
+
+Hesse et al. (2026) found that macaque neural populations during binocular flash suppression could be separated into coordinated micro-epochs predominantly representing the conscious or suppressed face. Median inferred dwell times were 64 and 59 ms. Conscious-state feature tuning was approximately 1.21x stronger, and simultaneously recorded face patches were not strongly synchronized. This **does not mean a browser can reproduce those neural states by delivering flashes**. The state timings inside this code are computational artwork only.
+
+Other useful research and implementation references:
+
+- [Original Hesse et al. preprint (2026)](https://doi.org/10.64898/2026.10.15.759299), CC BY 4.0.
+- [Visual perception of self-motion](https://doi.org/10.1146/annurev-vision-121423-013200), review on optic flow and vection.
+- [Directionless vection](https://pmc.ncbi.nlm.nih.gov/articles/PMC3589905/), opposing expanding and contracting flow.
+- [Chromostereopsis and illusory color depth](https://pmc.ncbi.nlm.nih.gov/articles/PMC4382974/).
+- [Audiovisual temporal binding](https://pubmed.ncbi.nlm.nih.gov/23709064/), review of cross-modal timing.
+- [W3C WCAG 2.3.1](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold), constraints on potentially seizure-inducing flashes.
+- [Tone.js](https://github.com/Tonejs/Tone.js) (Web Audio design reference, **not included as a dependency**).
+- [LYGIA](https://github.com/patriciogonzalezvivo/lygia) (shader-design reference, **no external library included**).
+- [WebGPU extended HDR example](https://github.com/code4fukui/hdr-demo).
+- [MDN HRTF PannerNode](https://developer.mozilla.org/en-US/docs/Web/API/PannerNode/panningModel).
+
+The repository contains original implementations rather than copied third-party source. No clinical claims are made. Large-area 15 Hz screen flashes are deliberately avoided, because they can induce photosensitive seizures without any established benefit from this paper.
+
 ## Volume III: The Immersive Journey
 
 **One tap → full-bleed universe.** All intensity, geometry, depth, and the available HDR highlight path are automatically enabled. The screen uses a minimal breathing halo, a gentle in/out instruction, and a small hidden controls menu. The rich diagnostics and toolbars from Volume II no longer appear during the journey.
