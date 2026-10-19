@@ -1,0 +1,17 @@
+/* THE UNSEEN VI: genuine fullscreen optical canvas and strictly opt-in controls. */
+html,body,#hdr6{dynamic-range-limit:no-limit!important}
+#hdr6{color-scheme:dark;touch-action:manipulation;filter:none!important;mix-blend-mode:normal!important}
+body.v6-hudless #rxHUD .rx-corner,
+body.v6-hudless #rxHUD .rx-title-burst,
+body.v6-hudless #rxHUD .rx-lower,
+body.v6-hudless #rxHUD .rx-menu-button{display:none!important}
+body.v6-hudless #rxHUD{opacity:1!important;visibility:visible!important;pointer-events:none!important}
+body.v6-hudless #rxHUD .rx-menu[aria-hidden="false"]{pointer-events:auto!important;opacity:1!important;visibility:visible!important;display:block!important}
+body.v6-hudless #shade{background:none!important}
+body.v6-hudless #hdr6{opacity:1!important}
+body.v6-hudless #rxMemoryMosh{opacity:.26!important}
+body.v6-hudless #volumeIVConstellation{opacity:.65!important}
+#rxGate .rx-warning::after{content:"  DOUBLE-TAP OR USE TWO FINGERS TO OPEN CONTROLS DURING THE EXPERIENCE.";display:block;margin-top:11px;color:#a0f0df}
+@media (prefers-reduced-motion:reduce){
+ body.v6-hudless #rxMemoryMosh,body.v6-hudless #volumeIVConstellation{display:none!important}
+}
