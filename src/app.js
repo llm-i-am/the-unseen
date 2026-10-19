@@ -158,7 +158,7 @@
    for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:1}))gl.uniform1f(u[name],v);
    gl.drawArrays(gl.TRIANGLES,0,3);
   }else draw2D();
-  renderHDR();if(tick%2===0)drawRaster(dt);
+  renderHDR();drawRaster(dt);
  }
  function setToggle(id,on){$(id).setAttribute("aria-pressed",String(on))}
  function setOpen(id,on){$(id).classList.toggle("open",on);$(id).setAttribute("aria-hidden",String(!on))}
@@ -185,7 +185,7 @@
   $("settingsBtn").onclick=()=>setSettings(!$("settings").classList.contains("open"));
   $("closeSettings").onclick=()=>setSettings(false);
   $("soundBtn").onclick=()=>setAudio();
-  $("freezeBtn").onclick=()=>{s.paused=!s.paused;setToggle("freezeBtn",s.paused);$("freezeBtn span").textContent=s.paused?"RESUME":"PAUSE";toast(s.paused?"Universe paused":"Universe moving")};
+  $("freezeBtn").onclick=()=>{s.paused=!s.paused;setToggle("freezeBtn",s.paused);$("freezeBtn").querySelector("span").textContent=s.paused?"RESUME":"PAUSE";toast(s.paused?"Universe paused":"Universe moving")};
   $("motionBtn").onclick=()=>setReduce(!s.reduced);
   $("hdrBtn").onclick=()=>setHDR(!s.hdr);
   $("decodeBtn").onclick=()=>{s.decode=!s.decode;setToggle("decodeBtn",s.decode);$("rightTelemetry").classList.toggle("off",!s.decode)};
