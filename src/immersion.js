@@ -137,6 +137,7 @@ function end(){
 }
 function resumePause(){
  paused=!paused;s.paused=paused;
+ if(paused)audio.suspend();else audio.resume();
  document.body.classList.toggle("im-paused",paused);
  updateText("imPause",paused?"Resume journey ▶":"Pause journey Ⅱ");
  last=performance.now();
