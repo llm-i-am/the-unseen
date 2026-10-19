@@ -7,7 +7,7 @@ window.UnseenAudio=class UnseenAudio {
   [0,3,7,10,14,17,22,24],[0,1,5,7,10,12,15,19],[0,2,7,9,12,14,17,21],
   [0,3,7,10,12,19,22,26],[-12,0,5,7,12,17,19,24],[0,1,6,7,12,13,18,19],
   [0,2,3,7,9,12,14,19],[-12,-5,0,2,7,10,12,17]]}
- async init(){
+ init(){
   if(this.ac)return;
   const C=window.AudioContext||window.webkitAudioContext;
   if(!C)throw new Error("Web Audio API unavailable");
@@ -64,7 +64,7 @@ window.UnseenAudio=class UnseenAudio {
   this.voices.forEach(v=>{const f=73.42*Math.pow(2,notes[v.i]/12);v.primary.frequency.setTargetAtTime(f,n,2.1);v.second.frequency.setTargetAtTime(f*2.002,n,2.4)});}
  setSpace(x){if(!this.ac)return;const n=this.ac.currentTime;this.wet.gain.setTargetAtTime(.11+.45*x,n,.25);this.dry.gain.setTargetAtTime(.65-.12*x,n,.25);}
  setVolume(x){this.volume=x;if(this.ac&&this.active)this.master.gain.setTargetAtTime(.03+.18*x,this.ac.currentTime,.15)}
- async toggle(on){try{if(!this.ac)await this.init();await this.ac.resume();this.active=on===undefined?!this.active:!!on;this.master.gain.cancelScheduledValues(this.ac.currentTime);this.master.gain.setTargetAtTime(this.active?.03+.18*(this.volume??.46):0,this.ac.currentTime,.18);return this.active}catch(e){console.warn("Audio failed",e);return false}}
+ async toggle(on){try{if(!this.ac)this.init();await this.ac.resume();this.active=on===undefined?!this.active:!!on;this.master.gain.cancelScheduledValues(this.ac.currentTime);this.master.gain.setTargetAtTime(this.active?.03+.18*(this.volume??.46):0,this.ac.currentTime,.18);return this.active}catch(e){console.warn("Audio failed",e);return false}}
  update(t,scene,stateA,stateB,flux,space,px){
   if(!this.ac||!this.active||t-this.last<.055)return 0;this.last=t;
   const now=this.ac.currentTime;
