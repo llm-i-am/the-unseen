@@ -1,7 +1,7 @@
 const fs=require('node:fs'),path=require('node:path');const {chromium}=require('playwright');
 (async()=>{
  const report={version:5,date:new Date().toISOString(),passed:false,desktop:{},mobile:{},errors:[],assets:{}};
- for(const file of ['index.html','rupture.css','src/rupture-field.js','src/riot-audio.js','src/rupture-experience.js','assets/og-cover.png','assets/apple-touch-icon.png']){
+ for(const file of ['index.html','rupture.css','src/rupture-field.js','src/riot-audio.js','src/rupture-experience.js','src/memory-mosh.js','assets/og-cover.png','assets/apple-touch-icon.png']){
   report.assets[file]=fs.existsSync(file)?fs.statSync(file).size:0;
   if(!report.assets[file])report.errors.push('Missing asset '+file);
  }
@@ -21,7 +21,7 @@ const fs=require('node:fs'),path=require('node:path');const {chromium}=require('
     const rt=window.UNSEEN_RUNTIME,im=window.UNSEEN_IMMERSION,stage=document.getElementById('stage');
     return {running:im?.running,version:im?.version,backend:document.getElementById('backend').textContent,
      mode:im?.mode,stageSize:[stage.width,stage.height],shaderCompiled:!!rt?.state&&!document.getElementById('backend').textContent.includes('FALLBACK'),
-     fractureShader:window.UNSEEN_SHADERS.fragment.includes('v5Breakage'),volume:rt?.state.volume,
+     fractureShader:window.UNSEEN_SHADERS.fragment.includes('v5Breakage'),memoryMosh:!!window.UNSEEN_MOSH?.ready,volume:rt?.state.volume,
      speed:rt?.state.speed,orbits:rt?.audio?.hyper?.orbit?.length||0,choir:rt?.audio?.hyper?.choir?.length||0,
      riot:!!rt?.audio?.riot,fullscreenUIHidden:getComputedStyle(document.querySelector('.toolbar')).display==='none',
      hudShown:document.getElementById('rxHUD').getAttribute('aria-hidden')==='false'};
@@ -54,7 +54,7 @@ const fs=require('node:fs'),path=require('node:path');const {chromium}=require('
    await page.locator('#rxExit').click({noWaitAfter:true});
    const exited=await page.evaluate(()=>!window.UNSEEN_IMMERSION.running&&document.getElementById('rxGate').getAttribute('aria-hidden')==='false');
    const pass=gate&&initial.running&&initial.version===5&&initial.shaderCompiled&&initial.fractureShader&&initial.speed>1
-     &&initial.hudShown&&initial.fullscreenUIHidden&&initial.stageSize.every(x=>x>0)&&menuShown&&next!==0&&altered!==1
+     &&initial.hudShown&&initial.memoryMosh&&initial.fullscreenUIHidden&&initial.stageSize.every(x=>x>0)&&menuShown&&next!==0&&altered!==1
      &&paused&&resumed&&comfort&&science&&restarted&&exited&&errors.length===0&&(label==='mobile'||initial.riot&&initial.orbits===4&&initial.choir===6);
    report[label]={gate,initial,menuShown,next,altered,paused,resumed,comfort,science,restarted,exited,pass,errors,logs};
    if(!pass)report.errors.push(label+' assertion failure');
