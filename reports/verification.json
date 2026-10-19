@@ -1,6 +1,6 @@
 {
   "version": 6,
-  "date": "2026-10-19T16:52:14.685Z",
+  "date": "2026-10-19T16:54:26.076Z",
   "passed": true,
   "desktop": {
     "gate": true,
@@ -24,7 +24,7 @@
       "fullscreenUIHidden": true,
       "hudShown": true,
       "visibleHud": false,
-      "hdr6": "webgl-fallback",
+      "hdr6": "webgl-sdr-display",
       "hdrCanvas": true,
       "hdrShader": true,
       "legacyGpuPaused": false
@@ -64,7 +64,7 @@
       "fullscreenUIHidden": true,
       "hudShown": true,
       "visibleHud": false,
-      "hdr6": "webgl-fallback",
+      "hdr6": "webgl-sdr-display",
       "hdrCanvas": true,
       "hdrShader": true,
       "legacyGpuPaused": false
@@ -91,7 +91,7 @@
     "src/rupture-experience.js": 9668,
     "src/memory-mosh.js": 2773,
     "src/hdr6-shader.js": 7590,
-    "src/hdr6-engine.js": 6193,
+    "src/hdr6-engine.js": 6370,
     "hdr6.css": 1176,
     "assets/og-cover.png": 250419,
     "assets/apple-touch-icon.png": 25152
