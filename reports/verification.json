@@ -1,98 +1,12 @@
 {
   "version": 4,
-  "date": "2026-10-19T03:25:01.218Z",
-  "passed": true,
-  "desktop": {
-    "gateVisible": true,
-    "originalEntryHidden": true,
-    "initial": {
-      "running": true,
-      "elapsed": 0.08,
-      "phase": "ARRIVE",
-      "mode": 0,
-      "backend": "WEBGL2 · DISPLAY P3",
-      "stageSize": [
-        461,
-        288
-      ],
-      "hdrActive": false,
-      "hyperfield": true,
-      "particles": 290,
-      "orbiters": 4,
-      "choir": 6,
-      "risset": 8,
-      "audioActive": true,
-      "intensity": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "titleHidden": true,
-      "toolbarHidden": true,
-      "progress": "scaleX(0.001)"
-    },
-    "menuShown": true,
-    "pace": [
-      5,
-      5
-    ],
-    "breathHidden": true,
-    "paused": true,
-    "resumed": true,
-    "prev": 0,
-    "advanced": 1,
-    "scienceOpened": true,
-    "restarted": true,
-    "exited": true,
-    "errors": []
-  },
-  "mobile": {
-    "gateVisible": true,
-    "originalEntryHidden": true,
-    "initial": {
-      "running": true,
-      "elapsed": 0.21330000000000007,
-      "phase": "ARRIVE",
-      "mode": 0,
-      "backend": "WEBGL2 · DISPLAY P3",
-      "stageSize": [
-        160,
-        270
-      ],
-      "hdrActive": false,
-      "hyperfield": true,
-      "particles": 130,
-      "orbiters": 4,
-      "choir": 6,
-      "risset": 8,
-      "audioActive": false,
-      "intensity": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "titleHidden": true,
-      "toolbarHidden": true,
-      "progress": "scaleX(0.001)"
-    },
-    "menuShown": true,
-    "pace": [
-      5,
-      5
-    ],
-    "breathHidden": true,
-    "paused": true,
-    "resumed": true,
-    "prev": 0,
-    "advanced": 1,
-    "scienceOpened": true,
-    "restarted": true,
-    "exited": true,
-    "errors": []
-  },
-  "errors": [],
+  "date": "2026-10-19T03:29:58.879Z",
+  "passed": false,
+  "desktop": {},
+  "mobile": {},
+  "errors": [
+    "page.evaluate: TypeError: Cannot read properties of null (reading 'style')\n    at eval (eval at evaluate (:370:30), <anonymous>:7:53)\n    at UtilityScript.evaluate (<anonymous>:372:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n    at /home/runner/work/the-unseen/the-unseen/tests/browser-smoke.cjs:21:29"
+  ],
   "assets": {
     "assets/og-cover.png": 263180,
     "assets/og-alternative.png": 263927,
