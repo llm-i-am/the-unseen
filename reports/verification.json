@@ -1,12 +1,86 @@
 {
   "version": 3,
-  "date": "2026-10-19T02:44:44.784Z",
-  "passed": false,
-  "desktop": {},
-  "mobile": {},
-  "errors": [
-    "locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#imBegin')\n    - locator resolved to <button id=\"imBegin\" class=\"im-primary\">…</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n\n    at /home/runner/work/the-unseen/the-unseen/tests/browser-smoke.cjs:19:65"
-  ],
+  "date": "2026-10-19T02:44:30.842Z",
+  "passed": true,
+  "desktop": {
+    "gateVisible": true,
+    "originalEntryHidden": true,
+    "initial": {
+      "running": true,
+      "elapsed": 0.24660000000000004,
+      "phase": "ARRIVE",
+      "mode": 0,
+      "backend": "WEBGL2 · DISPLAY P3",
+      "stageSize": [
+        1238,
+        774
+      ],
+      "hdrActive": false,
+      "intensity": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "titleHidden": true,
+      "toolbarHidden": true,
+      "progress": "scaleX(0.001)"
+    },
+    "menuShown": true,
+    "pace": [
+      5,
+      5
+    ],
+    "breathHidden": true,
+    "paused": true,
+    "resumed": true,
+    "prev": 0,
+    "advanced": 1,
+    "scienceOpened": true,
+    "restarted": true,
+    "exited": true,
+    "errors": []
+  },
+  "mobile": {
+    "gateVisible": true,
+    "originalEntryHidden": true,
+    "initial": {
+      "running": true,
+      "elapsed": 0.3934,
+      "phase": "ARRIVE",
+      "mode": 0,
+      "backend": "WEBGL2 · DISPLAY P3",
+      "stageSize": [
+        265,
+        573
+      ],
+      "hdrActive": false,
+      "intensity": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "titleHidden": true,
+      "toolbarHidden": true,
+      "progress": "scaleX(0.001)"
+    },
+    "menuShown": true,
+    "pace": [
+      5,
+      5
+    ],
+    "breathHidden": true,
+    "paused": true,
+    "resumed": true,
+    "prev": 0,
+    "advanced": 1,
+    "scienceOpened": true,
+    "restarted": true,
+    "exited": true,
+    "errors": []
+  },
+  "errors": [],
   "assets": {
     "assets/og-cover.png": 263180,
     "assets/og-alternative.png": 263927,
