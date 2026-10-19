@@ -1,8 +1,35 @@
-# THE UNSEEN · A 60ms Observatory
+# THE UNSEEN · Volume V: RUPTURE
 
-An interactive, eight-world audiovisual observatory inspired by the October 2026 preprint [*Rapid alternation of conscious and suppressed stimulus representations in the primate brain*](https://doi.org/10.64898/2026.10.15.759299) by Hesse and colleagues.
+An intense 16-act generative audiovisual performance (eight geometric universes reconfigured into new stages) inspired by the October 2026 preprint [*Rapid alternation of conscious and suppressed stimulus representations in the primate brain*](https://doi.org/10.64898/2026.10.15.759299) by Hesse and colleagues.
 
-**Expected public Pages URL (after you enable Pages):** https://llm-i-am.github.io/the-unseen/
+**Live public GitHub Pages URL:** https://llm-i-am.github.io/the-unseen/
+
+## Volume V — RUPTURE: No Safe Center
+
+**Intent:** replace the calm guided-breathing interface with raw, visually abrasive, industrial generative art. This is not medical, neurological or therapeutic stimulation.
+
+The default launches a 16-act audiovisual ride with sharp-edged neon typography and a stripped-back HUD. Chapters last approximately 14–24 seconds instead of the previous 42.5-second progression. Generated spatial sound, speed, and geometry vary at every act. The site remains static and dependency-free.
+
+### New systems
+
+- **Rupture Field (src/rupture-field.js):** fractal hard-light cuts, moiré lattices, prismatic folding, local spatial dislocations, chromatic shearing and evolving spectral structures.
+- **Riot Audio (src/riot-audio.js):** sample-free industrial rhythm sequencer with pitched kick sweeps, bandpass-noise snares and hats, distorted metallic fragments, FM bass stabs, probabilistic accents and rhythmic dropouts. Works alongside the existing spatial orbiters, harmonic choir and Shepard–Risset-like rising/falling tones.
+- **Memory Mosh (src/memory-mosh.js):** partial-frame delayed-image collage and local shearing with visual history feedback. Independently implemented; source references credited below.
+- **16-chapter director (src/rupture-experience.js):** stage-specific names, changing tempo, motion speed, geometric coupling, color and visual form, plus sudden typographic interventions. The default no longer counts breaths.
+- **Brutalist UI (rupture.css):** enormous compressed neon lettering and a single unobtrusive controls menu. Mute, pause, next reality, intensity, gentler motion and exit remain available.
+- **Progressive performance:** adaptive GPU resolution, low-cost entry preview, automatic conditional HDR, bounded compressor and sound opt-out.
+
+### The evidence and its limits
+
+The original Hesse et al. study measured temporally interleaved conscious/suppressed neural representations in macaques, not an effective 16 Hz human screen-entrainment protocol. The visual and auditory effects here are an original generative artwork, not clinical stimulation. Intensity comes from geometry, optical flow, contradictory spatial signals and audio timbre, **not repeated full-screen flashes**.
+
+Research and independent design references:
+
+- [Live frame-feedback datamosh art](https://github.com/niccolofanton/data-mosh), conceptual reference only; no copied code.
+- [Sample-free Web Audio drum synthesis](https://github.com/sen-ltd/drum-machine), architectural reference only; no copied code.
+- [Looming sounds influence perceived visual size/brightness](https://doi.org/10.1016/j.cognition.2014.04.011).
+- [MDN Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
+- [W3C flash threshold guidance](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold).
 
 ## Volume IV: Infinite Worlds / A Psychoacoustic Odyssey
 
