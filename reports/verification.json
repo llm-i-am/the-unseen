@@ -1,13 +1,13 @@
 {
   "version": 3,
-  "date": "2026-10-19T02:27:35.787Z",
+  "date": "2026-10-19T02:28:45.307Z",
   "passed": true,
   "desktop": {
     "gateVisible": true,
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.19660000000000005,
+      "elapsed": 0.3133,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
@@ -46,7 +46,7 @@
     "originalEntryHidden": true,
     "initial": {
       "running": true,
-      "elapsed": 0.34,
+      "elapsed": 0.4734,
       "phase": "ARRIVE",
       "mode": 0,
       "backend": "WEBGL2 · DISPLAY P3",
