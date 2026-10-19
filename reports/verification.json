@@ -1,11 +1,11 @@
 {
-  "date": "2026-10-19T01:41:28.599Z",
+  "date": "2026-10-19T01:43:23.580Z",
   "passed": true,
   "desktop": {
     "backend": "WEBGL2 · DISPLAY P3",
     "stageWidth": 1238,
     "stageHeight": 774,
-    "fps": "41 FPS",
+    "fps": "-- FPS",
     "modes": 8,
     "volume": "32",
     "selected": "7",
@@ -17,7 +17,7 @@
     "backend": "WEBGL2 · DISPLAY P3",
     "stageWidth": 265,
     "stageHeight": 573,
-    "fps": "42 FPS",
+    "fps": "44 FPS",
     "modes": 8,
     "volume": "32",
     "selected": "7",
