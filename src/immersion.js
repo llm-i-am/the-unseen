@@ -14,12 +14,12 @@ const startMarkup=`
  <div class="im-gate-sky" aria-hidden="true"></div>
  <div class="im-gate-content">
   <div class="im-mark"><img src="./assets/favicon.svg" width="46" height="46" alt=""></div>
-  <div class="im-eyebrow">THE UNSEEN · VOLUME III</div>
-  <h1 id="immersionTitle">Enter <em>the space<br>between thoughts.</em></h1>
+  <div class="im-eyebrow">THE UNSEEN · VOLUME IV</div>
+  <h1 id="immersionTitle">Enter <em>the impossible<br>world within.</em></h1>
   <div class="im-rule"></div>
-  <p>Five minutes. Eight living universes.<br>One gentle rhythm to follow.</p>
+  <p>Eight impossible universes. Dozens of living voices.<br>One descent beyond the ordinary.</p>
   <div class="im-guide-line">Breathe in for 4 · Breathe out for 6</div>
-  <button id="imBegin" class="im-primary">BEGIN THE JOURNEY <span aria-hidden="true">↗</span></button>
+  <button id="imBegin" class="im-primary">DESCEND INTO THE UNSEEN <span aria-hidden="true">↗</span></button>
   <button id="imSilent" class="im-silent">Experience without sound</button>
   <div class="im-disclaimer">Immersive moving imagery and spatial sound. Use comfortable brightness and volume. Breathe naturally if the pace is uncomfortable; never strain or hold your breath. Stop if dizzy or unwell. <a href="https://doi.org/10.64898/2026.10.15.759299" target="_blank" rel="noopener">The science ↗</a></div>
  </div>
@@ -55,14 +55,14 @@ let running=false,paused=false,elapsed=0,last=performance.now(),section=-1,prevP
 let wake=null,menu=false,audioEnabled=true,guide=true,comfort=reduced,pace=[4,6],poemUntil=0;
 let sceneOffset=0;
 const prompts=[
- "You are here.",
- "What you notice is not all that exists.",
- "Let the edges of thought soften.",
- "The hidden is not the absent.",
- "Allow the moment to unfold.",
- "You don't have to follow every thought.",
- "Rest your attention on the moving light.",
- "Let the universe breathe without you."
+ "Two realities. One threshold.",
+ "Do not chase the light. Let it find you.",
+ "An infinity hides between instants.",
+ "The absent has its own geometry.",
+ "Walk through a cathedral with no walls.",
+ "Every direction folds into itself.",
+ "Forward and backward become one.",
+ "You are the observer and the observed."
 ];
 const updateText=(id,text)=>{if($(id).textContent!==text)$(id).textContent=text};
 function menuState(open){
@@ -197,7 +197,7 @@ function frameState(sec,now){
  if(sec<340)chooseScene((act+sceneOffset)%8);
  else if(sec>360){chooseScene((7+sceneOffset+Math.floor((sec-340)/45))%8);}
  if(poemUntil&&sec>poemUntil){$("imPoem").classList.remove("visible");poemUntil=0}
- if(sec>342&&section!==99){section=99;showPoem("Carry this quiet with you.",10)}
+ if(sec>342&&section!==99){section=99;showPoem("The unseen was never outside you.",10)}
  if(!guide)$("imBreathOrb").style.opacity="0";
  else $("imBreathOrb").style.opacity="1";
 }
