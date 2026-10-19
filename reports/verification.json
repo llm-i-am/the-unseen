@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "date": "2026-10-19T03:36:29.929Z",
+  "date": "2026-10-19T03:39:23.518Z",
   "passed": true,
   "desktop": {
     "gate": true,
@@ -74,13 +74,13 @@
   },
   "errors": [],
   "assets": {
-    "index.html": 12328,
+    "index.html": 12297,
     "rupture.css": 6866,
     "src/rupture-field.js": 3016,
     "src/riot-audio.js": 5712,
     "src/rupture-experience.js": 9122,
     "src/memory-mosh.js": 2665,
-    "assets/og-cover.png": 263180,
+    "assets/og-cover.png": 250419,
     "assets/apple-touch-icon.png": 25152
   }
 }
