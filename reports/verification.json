@@ -1,12 +1,98 @@
 {
   "version": 4,
-  "date": "2026-10-19T02:51:41.554Z",
-  "passed": false,
-  "desktop": {},
-  "mobile": {},
-  "errors": [
-    "locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator('#imBegin')\n    - locator resolved to <button id=\"imBegin\" class=\"im-primary\">…</button>\n  - attempting click action\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - performing click action\n    - click action done\n    - waiting for scheduled navigations to finish\n\n    at /home/runner/work/the-unseen/the-unseen/tests/browser-smoke.cjs:19:65"
-  ],
+  "date": "2026-10-19T02:51:46.706Z",
+  "passed": true,
+  "desktop": {
+    "gateVisible": true,
+    "originalEntryHidden": true,
+    "initial": {
+      "running": true,
+      "elapsed": 0.48340000000000016,
+      "phase": "ARRIVE",
+      "mode": 0,
+      "backend": "WEBGL2 · DISPLAY P3",
+      "stageSize": [
+        1238,
+        774
+      ],
+      "hdrActive": false,
+      "hyperfield": true,
+      "particles": 290,
+      "orbiters": 4,
+      "choir": 6,
+      "risset": 8,
+      "audioActive": true,
+      "intensity": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "titleHidden": true,
+      "toolbarHidden": true,
+      "progress": "scaleX(0.001)"
+    },
+    "menuShown": true,
+    "pace": [
+      5,
+      5
+    ],
+    "breathHidden": true,
+    "paused": true,
+    "resumed": true,
+    "prev": 0,
+    "advanced": 1,
+    "scienceOpened": true,
+    "restarted": true,
+    "exited": true,
+    "errors": []
+  },
+  "mobile": {
+    "gateVisible": true,
+    "originalEntryHidden": true,
+    "initial": {
+      "running": true,
+      "elapsed": 0.30660000000000015,
+      "phase": "ARRIVE",
+      "mode": 0,
+      "backend": "WEBGL2 · DISPLAY P3",
+      "stageSize": [
+        160,
+        270
+      ],
+      "hdrActive": false,
+      "hyperfield": true,
+      "particles": 130,
+      "orbiters": 4,
+      "choir": 6,
+      "risset": 8,
+      "audioActive": false,
+      "intensity": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "titleHidden": true,
+      "toolbarHidden": true,
+      "progress": "scaleX(0.001)"
+    },
+    "menuShown": true,
+    "pace": [
+      5,
+      5
+    ],
+    "breathHidden": true,
+    "paused": true,
+    "resumed": true,
+    "prev": 0,
+    "advanced": 1,
+    "scienceOpened": true,
+    "restarted": true,
+    "exited": true,
+    "errors": []
+  },
+  "errors": [],
   "assets": {
     "assets/og-cover.png": 263180,
     "assets/og-alternative.png": 263927,
