@@ -28,6 +28,9 @@ jobs:
           node --check src/paradox.js
           node --check src/hyperbridge.js
           node --check src/constellation.js
+          node --check src/rupture-field.js
+          node --check src/riot-audio.js
+          node --check src/rupture-experience.js
       - name: Verify essential social metadata and assets
         run: |
           python3 - <<'PY'
