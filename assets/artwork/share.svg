@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs>
+ <radialGradient id="bg"><stop stop-color="#1b194a"/><stop offset=".48" stop-color="#0a0d22"/><stop offset="1" stop-color="#02050c"/></radialGradient>
+ <radialGradient id="violet"><stop stop-color="#b16bff" stop-opacity=".9"/><stop offset=".32" stop-color="#614bce" stop-opacity=".28"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+ <radialGradient id="cyan"><stop stop-color="#7debfa" stop-opacity=".75"/><stop offset=".36" stop-color="#158fab" stop-opacity=".24"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient>
+ <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#abf7ff"/><stop offset=".34" stop-color="#6fb1ff"/><stop offset=".6" stop-color="#c096ff"/><stop offset="1" stop-color="#ec8cf0"/></linearGradient>
+ <linearGradient id="text" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f9fbff"/><stop offset="1" stop-color="#b3d1ff"/></linearGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="35"/></filter><filter id="glow"><feGaussianBlur stdDeviation="10"/></filter>
+ <clipPath id="clip"><rect width="1200" height="630"/></clipPath>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<g clip-path="url(#clip)">
+<ellipse cx="825" cy="309" rx="330" ry="270" fill="url(#violet)" filter="url(#blur)"/>
+<ellipse cx="768" cy="314" rx="320" ry="250" fill="url(#cyan)" filter="url(#blur)"/>
+<g transform="translate(812 309)">
+ <ellipse rx="320" ry="127" transform="rotate(-33)" fill="none" stroke="#9eeaff" stroke-width="22" opacity=".48" filter="url(#glow)"/>
+ <ellipse rx="315" ry="124" transform="rotate(-33)" fill="none" stroke="url(#ring)" stroke-width="5"/>
+ <ellipse rx="260" ry="100" transform="rotate(39)" fill="none" stroke="#c9b7ff" stroke-width="2" opacity=".65"/>
+ <ellipse rx="205" ry="73" transform="rotate(57)" fill="none" stroke="#9ceafc" stroke-width="3" opacity=".54"/>
+ <ellipse rx="280" ry="84" transform="rotate(-64)" fill="none" stroke="#cba7fd" stroke-width="2" opacity=".65"/>
+ <ellipse rx="157" ry="48" transform="rotate(-22)" fill="none" stroke="#dcf7ff" stroke-width="2" opacity=".53"/>
+ <circle r="72" fill="#9ebaff" opacity=".3" filter="url(#blur)"/>
+ <circle r="43" fill="#030512"/>
+ <circle r="28" fill="#0b0b1a" stroke="#9dc9fc" stroke-width="2"/>
+</g>
+<g opacity=".32" stroke="#9bc3ff" stroke-width="1">
+<path d="M0 160H1200M0 472H1200"/><path d="M82 0V630M1110 0V630"/>
+</g>
+<g fill="#cce6ff">
+<circle cx="1006" cy="109" r="2"/><circle cx="664" cy="121" r="1.5"/><circle cx="1042" cy="470" r="2.1"/><circle cx="940" cy="547" r="1.5"/>
+</g>
+</g>
+<text x="82" y="94" fill="#9dc7e8" font-size="17" font-family="sans-serif" letter-spacing="5">THE CONSCIOUSNESS OBSERVATORY</text>
+<text x="76" y="292" fill="url(#text)" font-family="Georgia,serif" font-size="117" letter-spacing="-7">THE</text>
+<text x="76" y="396" fill="url(#text)" font-family="Georgia,serif" font-size="117" letter-spacing="-7">UNSEEN</text>
+<path d="M80 438H410" stroke="#a8caff" stroke-opacity=".6"/>
+<text x="81" y="486" font-family="sans-serif" font-size="20" letter-spacing="5" fill="#d4e5ff">A 60ms OBSERVATORY</text>
+<text x="82" y="539" font-family="sans-serif" font-size="16" fill="#93a9c9" letter-spacing="1">EIGHT UNIVERSES OF LIGHT AND SOUND</text>
+</svg>
