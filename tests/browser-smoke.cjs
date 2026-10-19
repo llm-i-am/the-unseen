@@ -21,7 +21,7 @@ const {chromium}=require('playwright');
    const selected=await page.locator('.mode.selected').getAttribute('data-mode');
    await page.locator('#settingsBtn').click();
    const visible=await page.locator('#settings').evaluate(el=>el.classList.contains('open'));
-   await page.locator('#volume').fill('32');
+   await page.locator('#volume').evaluate(el=>{el.value='32';el.dispatchEvent(new Event('input',{bubbles:true}));});
    await page.locator('#closeSettings').click();
    await page.locator('#help').click();
    const science=await page.locator('#science').getAttribute('aria-hidden');
