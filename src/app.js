@@ -7,10 +7,10 @@
  const cn=$("stage"),hdr=$("hdr"),strip=$("raster"),paint=strip.getContext("2d");
  const mobile=matchMedia("(max-width:780px)").matches;
  const motionPref=matchMedia("(prefers-reduced-motion: reduce)");
- const s={mode:0,density:.76,depth:.82,flux:.68,energy:.74,dwell:64,coupling:.18,space:.68,volume:.46,paused:false,reduced:motionPref.matches,palette:0,hdr:false,decode:true};
+ const s={mode:0,density:.76,depth:.82,flux:.68,energy:.74,dwell:64,coupling:.18,space:.68,volume:.46,paused:false,reduced:motionPref.matches,palette:0,hdr:false,decode:true,anaglyph:false};
  let gl=null,prg=null,u={},ctx2d=null,device=null,gpuctx=null,gpupipe=null,gpubind=null,gpubuf=null,gpuReady=false,backend="INITIALIZING";
  const audio=new UnseenAudio();audio.volume=s.volume;
- let time=0,last=performance.now(),tick=0,frames=0,acc=0,fps=60,quality=mobile?.68:.86,clip=1;
+ let time=0,last=performance.now(),tick=0,frames=0,acc=0,fps=60,quality=mobile?.68:.86,clip=1,tourTimer=0,tourOn=false;
  let pointer=[.5,.5],pointerGoal=[.5,.5],touchPoint=[0,0],lastTouch=-100,beat=0,lastShot=-100;
  const patches=[{state:0,next:0,smoothed:0},{state:1,next:0,smoothed:0}];
  const cellRates=Array.from({length:128},(_,i)=>({A:4.5+12*Math.pow(.5+.5*Math.sin(i*.717+i*i*.0007),2),B:4.5+12*Math.pow(.5+.5*Math.cos(i*.529+i*i*.0008),2)}));
@@ -50,7 +50,7 @@
    let v=shader(gl.VERTEX_SHADER,UNSEEN_SHADERS.vertex),f=shader(gl.FRAGMENT_SHADER,UNSEEN_SHADERS.fragment);
    prg=gl.createProgram();gl.attachShader(prg,v);gl.attachShader(prg,f);gl.linkProgram(prg);gl.deleteShader(v);gl.deleteShader(f);
    if(!gl.getProgramParameter(prg,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(prg));
-   for(let n of ["Resolution","Pointer","TouchPoint","Time","Mode","Energy","Density","Depth","Flux","StateA","StateB","OnOff","Band","Beat","TouchAge","Palette","Speed"])u[n]=gl.getUniformLocation(prg,"u"+n);
+   for(let n of ["Resolution","Pointer","TouchPoint","Time","Mode","Energy","Density","Depth","Flux","StateA","StateB","OnOff","Band","Beat","TouchAge","Palette","Speed","Anaglyph"])u[n]=gl.getUniformLocation(prg,"u"+n);
    const vao=gl.createVertexArray();gl.bindVertexArray(vao);
    backend=gl.drawingBufferColorSpace==="display-p3"?"WEBGL2 · DISPLAY P3":"WEBGL2 · SDR";setText("backend",backend);
   }catch(e){console.warn("WebGL2 fallback:",e);try{ctx2d=cn.getContext("2d",{alpha:false})}catch{};backend="CANVAS2D · FALLBACK";setText("backend",backend);}
@@ -155,12 +155,13 @@
    gl.uniform2f(u.Resolution,cn.width,cn.height);gl.uniform2f(u.Pointer,pointer[0],pointer[1]);
    // Touch location mapped into shader world coordinates.
    gl.uniform2f(u.TouchPoint,(touchPoint[0]-.5)*(cn.width/Math.min(cn.width,cn.height))*1.42,(touchPoint[1]-.5)*(cn.height/Math.min(cn.width,cn.height))*1.42);
-   for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:1}))gl.uniform1f(u[name],v);
+   for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:1,Anaglyph:s.anaglyph?1:0}))gl.uniform1f(u[name],v);
    gl.drawArrays(gl.TRIANGLES,0,3);
   }else draw2D();
   renderHDR();drawRaster(dt);
  }
  function setToggle(id,on){$(id).setAttribute("aria-pressed",String(on))}
+ function toggleTour(on){tourOn=!!on;clearInterval(tourTimer);setToggle("tourBtn",tourOn);$("tourBtn").querySelector("span").textContent=tourOn?"STOP ODYSSEY":"ODYSSEY TOUR";if(tourOn){tourTimer=setInterval(()=>{if(!s.paused&&!document.hidden)setMode((s.mode+1)%8)},13000);toast("Odyssey engaged — eight worlds, one journey")}else toast("Odyssey paused")}
  function setOpen(id,on){$(id).classList.toggle("open",on);$(id).setAttribute("aria-hidden",String(!on))}
  function setSettings(on){setOpen("settings",on);setToggle("settingsBtn",on)}
  function setReduce(on){
@@ -179,15 +180,17 @@
  function install(){
   const sliderDefs=["density","depth","flux","energy","dwell","coupling","space","volume"];
   for(const id of sliderDefs){$(id).addEventListener("input",()=>{let val=+$(id).value;s[id]=id==="dwell"?val:val/100;setText(id+"Out",val+(id==="dwell"?"ms":"%"));if(id==="space")audio.setSpace(s.space);if(id==="volume")audio.setVolume(s.volume)})}
-  document.querySelectorAll(".mode").forEach(b=>b.addEventListener("click",()=>setMode(+b.dataset.mode)));
+  document.querySelectorAll(".mode").forEach(b=>b.addEventListener("click",()=>{if(tourOn)toggleTour(false);setMode(+b.dataset.mode)}));
   document.querySelectorAll("[data-preset]").forEach(b=>b.addEventListener("click",()=>preset(b.dataset.preset)));
   $("randomize").onclick=()=>{s.palette=Math.floor(Math.random()*3);s.mode=Math.floor(Math.random()*8);for(let key of ["density","flux","depth","energy"]){let n=Math.round(48+Math.random()*49);s[key]=n/100;$(key).value=n;setText(key+"Out",n+"%")}setMode(s.mode)};
+  $("tourBtn").onclick=()=>toggleTour(!tourOn);
   $("settingsBtn").onclick=()=>setSettings(!$("settings").classList.contains("open"));
   $("closeSettings").onclick=()=>setSettings(false);
   $("soundBtn").onclick=()=>setAudio();
   $("freezeBtn").onclick=()=>{s.paused=!s.paused;setToggle("freezeBtn",s.paused);$("freezeBtn").querySelector("span").textContent=s.paused?"RESUME":"PAUSE";toast(s.paused?"Universe paused":"Universe moving")};
   $("motionBtn").onclick=()=>setReduce(!s.reduced);
   $("hdrBtn").onclick=()=>setHDR(!s.hdr);
+  $("glassesBtn").onclick=()=>{s.anaglyph=!s.anaglyph;setToggle("glassesBtn",s.anaglyph);if(s.anaglyph){setMode(1);toast("Red/cyan filter mode · use matching glasses");}else toast("Glasses mode off")};
   $("decodeBtn").onclick=()=>{s.decode=!s.decode;setToggle("decodeBtn",s.decode);$("rightTelemetry").classList.toggle("off",!s.decode)};
   $("help").onclick=()=>setOpen("science",true);
   $("closeScience").onclick=()=>setOpen("science",false);
