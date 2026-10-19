@@ -37,7 +37,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           mkdir -p /tmp/unseen-ci-artifacts
-          for f in reports/verification.json assets/site-preview-desktop.jpg assets/site-preview-mobile.jpg; do
+          for f in reports/verification.json reports/hdr6-gpu-check.json assets/site-preview-desktop.jpg assets/site-preview-mobile.jpg; do
             if test -f "$f"; then
               cp "$f" "/tmp/unseen-ci-artifacts/$(basename "$f")"
             fi
@@ -47,10 +47,11 @@ jobs:
             git reset --hard origin/main
             mkdir -p reports assets
             if test -f /tmp/unseen-ci-artifacts/verification.json; then cp /tmp/unseen-ci-artifacts/verification.json reports/; fi
+            if test -f /tmp/unseen-ci-artifacts/hdr6-gpu-check.json; then cp /tmp/unseen-ci-artifacts/hdr6-gpu-check.json reports/; fi
             for f in site-preview-desktop.jpg site-preview-mobile.jpg; do
               if test -f "/tmp/unseen-ci-artifacts/$f"; then cp "/tmp/unseen-ci-artifacts/$f" assets/; fi
             done
-            git add -f reports/verification.json assets/site-preview-desktop.jpg assets/site-preview-mobile.jpg 2>/dev/null || true
+            git add -f reports/verification.json reports/hdr6-gpu-check.json assets/site-preview-desktop.jpg assets/site-preview-mobile.jpg 2>/dev/null || true
             if git diff --cached --quiet; then exit 0; fi
             git commit -m "Record latest Volume VI desktop/mobile HDR immersion browser checks"
             if git push origin HEAD:main; then exit 0; fi
