@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#040610">
+<meta name="description" content="THE UNSEEN — eight impossible worlds of light and sound, inspired by the 60-millisecond micro-epochs of conscious and suppressed visual representation.">
+<meta name="author" content="The Unseen">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="THE UNSEEN">
+<meta property="og:title" content="THE UNSEEN — Enter the space between perception and reality">
+<meta property="og:description" content="Two worlds. One consciousness. An experimental audiovisual observatory inspired by cutting-edge neuroscience. Experience eight living universes in your browser.">
+<meta property="og:url" content="https://llm-i-am.github.io/the-unseen/">
+<meta property="og:image" content="https://llm-i-am.github.io/the-unseen/assets/og-cover.png">
+<meta property="og:image:secure_url" content="https://llm-i-am.github.io/the-unseen/assets/og-cover.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:alt" content="An electric violet and cyan luminous vortex, THE UNSEEN, A 60ms OBSERVATORY.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="THE UNSEEN — A 60ms Observatory">
+<meta name="twitter:description" content="Eight impossible worlds. Spatial sound. A new frontier in perception-inspired generative art.">
+<meta name="twitter:image" content="https://llm-i-am.github.io/the-unseen/assets/og-cover.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="The Unseen">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="canonical" href="https://llm-i-am.github.io/the-unseen/">
+<link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="./assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="stylesheet" href="./style.css">
+<title>THE UNSEEN · A 60ms Observatory</title>
+</head>
+<body>
+<canvas id="stage" aria-hidden="true"></canvas>
+<canvas id="hdr" aria-hidden="true"></canvas>
+<div id="shade" aria-hidden="true"></div>
+<header class="top">
+ <a class="brand" href="./" aria-label="The Unseen, home"><img src="./assets/favicon.svg" alt="" width="35" height="35"><span>THE <em>UNSEEN</em><small>THE CONSCIOUSNESS OBSERVATORY / VOL. II</small></span></a>
+ <div class="headRight"><span class="status"><i></i> LIVE GENERATIVE ENGINE</span><span id="backend" class="technical">INITIALIZING</span><button class="round" id="help" title="The science" aria-label="About the science">?</button><button class="round" id="fullscreen" title="Fullscreen" aria-label="Toggle fullscreen">⛶</button></div>
+</header>
+<main class="overlay">
+ <div class="titlebox" id="titlebox" aria-live="polite"><div class="overline" id="chapter">ACT 01 — THE APERTURE</div><h1 id="sceneTitle">The threshold<br><i>is not a wall.</i></h1><p id="sceneDescription">Hold still. A second universe is already here.</p></div>
+ <aside class="leftTelemetry" aria-label="Simulated cortical telemetry">
+  <div class="vertical">EXPERIMENTAL PERCEPTION ENGINE</div>
+  <div class="labLine"></div>
+  <div class="datum"><span>MICRO-EPOCH</span><strong id="dwellMetric">64 <small>ms</small></strong></div>
+  <div class="datum"><span>REPRESENTATION</span><strong id="stateMetric">A / VISIBLE</strong></div>
+  <div class="datum"><span>GAIN RATIO</span><strong>1.21<span class="micro">×</span></strong></div>
+  <div class="datum"><span>SYNTHETIC NEURONS</span><strong>128</strong></div>
+ </aside>
+ <div class="rightTelemetry" id="rightTelemetry">
+  <div class="telehead">CORTICAL SIMULATOR <small>GENERATED · NOT RECORDED</small></div>
+  <canvas id="raster" width="320" height="170" aria-label="Simulation of spiking activity in two neural populations"></canvas>
+  <div class="stateBars"><span>CONSCIOUS <b id="barA" style="width:54%"></b></span><span>SUPPRESSED <b id="barB" style="width:46%"></b></span></div>
+  <div class="teleFoot"><span id="decode">HELD-OUT DECODER · ONLINE</span><span id="fps">-- FPS</span></div>
+ </div>
+ <nav id="nav" class="nav" aria-label="Choose a visual world">
+  <button class="mode selected" data-mode="0"><b>01</b> APERTURE</button>
+  <button class="mode" data-mode="1"><b>02</b> RIVALRY</button>
+  <button class="mode" data-mode="2"><b>03</b> MULTIPLEX</button>
+  <button class="mode" data-mode="3"><b>04</b> GHOST</button>
+  <button class="mode" data-mode="4"><b>05</b> CATHEDRAL</button>
+  <button class="mode" data-mode="5"><b>06</b> FOLD</button>
+  <button class="mode" data-mode="6"><b>07</b> NEURAL SEA</button>
+  <button class="mode" data-mode="7"><b>08</b> EVENT HORIZON</button>
+ </nav>
+ <div class="bottomMeta"><span>MOVE TO BEND SPACE · TAP TO RELEASE ENERGY · HEADPHONES RECOMMENDED</span><span>NOT A BRAIN-ENTRAINMENT DEVICE <span class="diamond">✦</span> <a href="https://doi.org/10.64898/2026.10.15.759299" target="_blank" rel="noopener">RESEARCH ↗</a></span></div>
+ <div class="toolbar"><button id="soundBtn" class="tool" aria-label="Toggle audio" aria-pressed="false">♫ <span>SOUND OFF</span></button><button id="settingsBtn" class="tool" aria-pressed="false">⚙ <span>CONTROL ROOM</span></button><button id="freezeBtn" class="tool" aria-pressed="false">Ⅱ <span>PAUSE</span></button><button id="shareBtn" class="tool" aria-label="Share experience">↗ <span>SHARE</span></button></div>
+</main>
+<section class="settings" id="settings" role="dialog" aria-label="Control room" aria-modal="false" aria-hidden="true">
+ <div class="settingHead"><span>THE CONTROL ROOM <small>MANIPULATE YOUR UNIVERSE</small></span><button id="closeSettings" class="round" aria-label="Close settings">×</button></div>
+ <p class="settingNote">Every control drives procedural geometry, a synthetic neural model, or the sound engine. There is no pre-rendered video or prerecorded music.</p>
+ <label>GEOMETRIC COMPLEXITY <output id="densityOut">76%</output><input id="density" type="range" min="5" max="100" value="76"></label>
+ <label>DEPTH / PARALLAX <output id="depthOut">82%</output><input id="depth" type="range" min="0" max="100" value="82"></label>
+ <label>TEMPORAL INTERFERENCE <output id="fluxOut">68%</output><input id="flux" type="range" min="0" max="100" value="68"></label>
+ <label>CHROMATIC ENERGY <output id="energyOut">74%</output><input id="energy" type="range" min="10" max="100" value="74"></label>
+ <label>MICRO-EPOCH MEDIAN <output id="dwellOut">64ms</output><input id="dwell" type="range" min="30" max="200" value="64"></label>
+ <label>CORTICAL PATCH COUPLING <output id="couplingOut">18%</output><input id="coupling" type="range" min="0" max="100" value="18"></label>
+ <label>AUDITORY SPACIOUSNESS <output id="spaceOut">68%</output><input id="space" type="range" min="0" max="100" value="68"></label>
+ <label>SOUND VOLUME <output id="volumeOut">46%</output><input id="volume" type="range" min="0" max="100" value="46"></label>
+ <div class="settingSwitch"><span>REDUCED MOTION <small>No camera travel or micro-state visual motion</small></span><button id="motionBtn" class="switch" aria-pressed="false"><i></i></button></div>
+ <div class="settingSwitch"><span>TRUE HDR HIGHLIGHTS <small>WebGPU + extended tone mapping; requires HDR support</small></span><button id="hdrBtn" class="switch" aria-pressed="false"><i></i></button></div>
+ <div class="settingSwitch"><span>DECODE VIEW <small>Expose the simulated hidden representation</small></span><button id="decodeBtn" class="switch" aria-pressed="true"><i></i></button></div>
+ <div class="presetRow"><button data-preset="abyss">ABYSS</button><button data-preset="aurora">AURORA</button><button data-preset="ember">EMBER</button><button id="randomize">RECOMBINE ↝</button></div>
+ <div class="controlFoot">1–8: scenes · M: sound · H: controls · Space: pause · F: fullscreen<br>Site experience inspired by research, not intended to reproduce neural activity or induce altered states.</div>
+</section>
+<section id="science" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="scienceTitle">
+ <div class="modalCard"><button class="round modalClose" id="closeScience" aria-label="Close">×</button><div class="eyebrow">THE SCIENCE / NOT THE HYPE</div><h2 id="scienceTitle">Consciousness is not a frame rate.</h2>
+ <p>Hesse and colleagues recorded activity from macaque inferotemporal and prefrontal cortex during binocular flash suppression. Within a stable visual percept, population activity alternated between representations of the consciously reported face and a suppressed face.</p>
+ <div class="finding"><b>~59–64 ms</b><span>Median dwell durations for the two inferred states; not an established human refresh rate.</span></div>
+ <div class="finding"><b>1.21×</b><span>Average gain of conscious-state feature tuning versus suppressed-state tuning.</span></div>
+ <div class="finding"><b>WEAK</b><span>Cross-patch synchronization, motivating the separately phased worlds in this simulation.</span></div>
+ <div class="finding"><b>HELD-OUT</b><span>Researchers inferred states from one half of neurons and decoded features from the other to control circularity. Here the diagnostic is a creative synthetic illustration only.</span></div>
+ <p>The authors studied <b>neural representations</b>, not a screen-based stimulation protocol. Our internal simulation evolves on micro-epoch timescales while visible illumination stays continuous. This is a generative artwork, <b>not</b> an experiment or validated method of changing consciousness.</p>
+ <a class="paperLink" href="https://doi.org/10.64898/2026.10.15.759299" target="_blank" rel="noopener noreferrer">READ THE OCT 2026 PREPRINT ↗</a></div>
+</section>
+<div id="entry" class="entry">
+ <div class="entryCard"><div class="entryHalo"><img src="./assets/favicon.svg" alt="" width="70" height="70"></div><div class="entryEyebrow">AN INVITATION INTO THE IMPOSSIBLE</div><h2>THE <em>UNSEEN</em></h2><p class="entrySub">A 60 MILLISECOND OBSERVATORY / SECOND GENERATION</p><p class="entryText">Two worlds inhabit the same moment. One arrives in awareness. The other never truly leaves. Eight universes of living light and spatial sound. No video. No samples. Nothing repeated.</p><p class="entryWarning">Intense moving geometric imagery and immersive sound. May cause discomfort, dizziness, or photosensitivity. No rapid full-screen strobing is used. Start with comfortable screen brightness and audio volume; stop if uncomfortable.</p><div class="entryActions"><button id="enterAudio" class="enterPrimary">ENTER WITH SOUND ↗</button><button id="enterQuiet" class="enterSecondary">ENTER SILENTLY</button></div><p class="entryFoot">HEADPHONES + LANDSCAPE + FULLSCREEN RECOMMENDED<br>NOT A MEDICAL OR NEUROSCIENTIFIC TEST</p></div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="./src/shaders.js"></script><script src="./src/audio.js"></script><script src="./src/app.js"></script>
+</body>
+</html>
