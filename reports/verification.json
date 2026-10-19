@@ -1,6 +1,6 @@
 {
   "version": 5,
-  "date": "2026-10-19T03:34:12.611Z",
+  "date": "2026-10-19T03:34:25.375Z",
   "passed": true,
   "desktop": {
     "gate": true,
@@ -72,7 +72,7 @@
   },
   "errors": [],
   "assets": {
-    "index.html": 12284,
+    "index.html": 12328,
     "rupture.css": 6866,
     "src/rupture-field.js": 3016,
     "src/riot-audio.js": 5712,
