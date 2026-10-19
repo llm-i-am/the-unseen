@@ -1,112 +1,83 @@
 {
-  "version": 4,
-  "date": "2026-10-19T03:29:35.271Z",
+  "version": 5,
+  "date": "2026-10-19T03:31:08.204Z",
   "passed": true,
   "desktop": {
-    "gateVisible": true,
-    "originalEntryHidden": true,
+    "gate": true,
     "initial": {
       "running": true,
-      "elapsed": 0.7167000000000007,
-      "phase": "ARRIVE",
-      "mode": 0,
+      "version": 5,
       "backend": "WEBGL2 · DISPLAY P3",
+      "mode": 0,
       "stageSize": [
         1238,
         774
       ],
-      "hdrActive": false,
-      "hyperfield": true,
-      "particles": 290,
-      "orbiters": 4,
+      "shaderCompiled": true,
+      "fractureShader": true,
+      "volume": 0.42,
+      "speed": 3,
+      "orbits": 4,
       "choir": 6,
-      "risset": 8,
-      "audioActive": true,
-      "intensity": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "titleHidden": true,
-      "toolbarHidden": true,
-      "progress": "scaleX(0.001)"
+      "riot": true,
+      "fullscreenUIHidden": true,
+      "hudShown": true
     },
     "menuShown": true,
-    "pace": [
-      5,
-      5
-    ],
-    "breathHidden": true,
+    "next": 1,
+    "altered": 2,
     "paused": true,
     "resumed": true,
-    "prev": 0,
-    "advanced": 1,
-    "scienceOpened": true,
+    "comfort": true,
+    "science": true,
     "restarted": true,
     "exited": true,
-    "errors": []
+    "pass": true,
+    "errors": [],
+    "logs": []
   },
   "mobile": {
-    "gateVisible": true,
-    "originalEntryHidden": true,
+    "gate": true,
     "initial": {
       "running": true,
-      "elapsed": 0.08,
-      "phase": "ARRIVE",
-      "mode": 0,
+      "version": 5,
       "backend": "WEBGL2 · DISPLAY P3",
+      "mode": 0,
       "stageSize": [
-        160,
-        270
+        265,
+        573
       ],
-      "hdrActive": false,
-      "hyperfield": true,
-      "particles": 130,
-      "orbiters": 4,
+      "shaderCompiled": true,
+      "fractureShader": true,
+      "volume": 0.42,
+      "speed": 3,
+      "orbits": 4,
       "choir": 6,
-      "risset": 8,
-      "audioActive": false,
-      "intensity": [
-        1,
-        1,
-        1,
-        1
-      ],
-      "titleHidden": true,
-      "toolbarHidden": true,
-      "progress": "scaleX(0.001)"
+      "riot": true,
+      "fullscreenUIHidden": true,
+      "hudShown": true
     },
     "menuShown": true,
-    "pace": [
-      5,
-      5
-    ],
-    "breathHidden": true,
+    "next": 1,
+    "altered": 2,
     "paused": true,
     "resumed": true,
-    "prev": 0,
-    "advanced": 1,
-    "scienceOpened": true,
+    "comfort": true,
+    "science": true,
     "restarted": true,
     "exited": true,
-    "errors": []
+    "pass": true,
+    "errors": [],
+    "logs": []
   },
   "errors": [],
   "assets": {
+    "index.html": 12284,
+    "rupture.css": 6866,
+    "src/rupture-field.js": 3016,
+    "src/riot-audio.js": 5712,
+    "src/rupture-experience.js": 9122,
     "assets/og-cover.png": 263180,
-    "assets/og-alternative.png": 263927,
-    "assets/apple-touch-icon.png": 25152,
-    "assets/favicon-32.png": 1848,
-    "favicon.ico": 6229,
-    "assets/icon-192.png": 27209,
-    "assets/icon-512.png": 99070,
-    "immersive.css": 8337,
-    "src/immersion.js": 12239,
-    "src/hyperfield.js": 5865,
-    "src/hyperaudio.js": 6923,
-    "src/paradox.js": 1814,
-    "src/hyperbridge.js": 1812,
-    "src/constellation.js": 4865
+    "assets/apple-touch-icon.png": 25152
   }
 }
