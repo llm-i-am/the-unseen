@@ -31,6 +31,7 @@ jobs:
           node --check src/rupture-field.js
           node --check src/riot-audio.js
           node --check src/rupture-experience.js
+          node --check src/memory-mosh.js
       - name: Verify essential social metadata and assets
         run: |
           python3 - <<'PY'
