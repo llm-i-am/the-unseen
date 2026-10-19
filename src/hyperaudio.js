@@ -15,7 +15,7 @@ proto.initHyper=function(){
  if(this.hyper||!this.ac)return;
  const ac=this.ac,now=ac.currentTime;
  const bus=ac.createGain();bus.gain.value=.68;bus.connect(this.dry);
- const wet=ac.createGain();wet.gain.value=.36;wet.connect(this.wet);
+ const wet=ac.createGain();wet.gain.value=.36;wet.connect(this.reverbInput || this.wet);
  const chorus=ac.createDelay(1.0),feedback=ac.createGain();
  chorus.delayTime.value=.085;feedback.gain.value=.12;
  bus.connect(chorus);chorus.connect(feedback);feedback.connect(chorus);chorus.connect(wet);
