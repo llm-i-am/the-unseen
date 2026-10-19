@@ -45,6 +45,8 @@ function configure(){
 }
 async function initialize(){
  if(!navigator.gpu||!window.isSecureContext){status.mode="webgl-fallback";return}
+ // An SDR display cannot benefit from an EDR canvas; preserve responsive WebGL there.
+ if(!matchMedia("(dynamic-range: high)").matches){status.mode="webgl-sdr-display";return}
  try{
   adapter=await navigator.gpu.requestAdapter({powerPreference:"high-performance"});
   if(!adapter){status.mode="webgl-fallback";return}
