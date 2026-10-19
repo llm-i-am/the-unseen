@@ -155,7 +155,7 @@
    gl.uniform2f(u.Resolution,cn.width,cn.height);gl.uniform2f(u.Pointer,pointer[0],pointer[1]);
    // Touch location mapped into shader world coordinates.
    gl.uniform2f(u.TouchPoint,(touchPoint[0]-.5)*(cn.width/Math.min(cn.width,cn.height))*1.42,(touchPoint[1]-.5)*(cn.height/Math.min(cn.width,cn.height))*1.42);
-   for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:1,Anaglyph:s.anaglyph?1:0,Breath:s.breath}))gl.uniform1f(u[name],v);
+   for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:(s.speed||1),Anaglyph:s.anaglyph?1:0,Breath:s.breath}))gl.uniform1f(u[name],v);
    gl.drawArrays(gl.TRIANGLES,0,3);
   }else draw2D();
   renderHDR();drawRaster(dt);
