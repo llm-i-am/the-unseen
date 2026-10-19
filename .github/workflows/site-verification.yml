@@ -1,0 +1,36 @@
+name: Site verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'index.html'
+      - 'style.css'
+      - '.github/workflows/site-verification.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - name: Verify JavaScript syntax
+        run: |
+          node --check src/shaders.js
+          node --check src/audio.js
+          node --check src/app.js
+      - name: Verify essential social metadata and assets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          html=Path('index.html').read_text()
+          for key in ['og:image','og:title','twitter:card','apple-touch-icon','manifest.webmanifest','src/app.js','src/shaders.js','src/audio.js']:
+              assert key in html,key
+          for p in ['style.css','manifest.webmanifest','assets/favicon.svg','assets/artwork/share.svg']:
+              assert Path(p).exists(),p
+          assert html.count('data-mode=')==8
+          print('Static site verification passed')
+          PY
