@@ -1,11 +1,11 @@
 {
   "version": 5,
-  "date": "2026-10-19T16:46:31.432Z",
+  "date": "2026-10-19T16:47:15.231Z",
   "passed": false,
   "desktop": {},
   "mobile": {},
   "errors": [
-    "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#rxMenuButton')\n    - locator resolved to <button id=\"rxMenuButton\" aria-expanded=\"false\" class=\"rx-menu-button\" aria-label=\"Open controls\">•••</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    6 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n\n    at /home/runner/work/the-unseen/the-unseen/tests/browser-smoke.cjs:30:40"
+    "locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator('#rxMenuButton')\n    - locator resolved to <button id=\"rxMenuButton\" aria-expanded=\"false\" class=\"rx-menu-button\" aria-label=\"Open controls\">•••</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is not visible\n    - retrying click action\n      - waiting 100ms\n    19 × waiting for element to be visible, enabled and stable\n       - element is not visible\n     - retrying click action\n       - waiting 500ms\n    - waiting for element to be visible, enabled and stable\n\n    at /home/runner/work/the-unseen/the-unseen/tests/browser-smoke.cjs:30:40"
   ],
   "assets": {
     "index.html": 12547,
@@ -13,7 +13,7 @@
     "src/rupture-field.js": 3016,
     "src/riot-audio.js": 5712,
     "src/rupture-experience.js": 9668,
-    "src/memory-mosh.js": 2665,
+    "src/memory-mosh.js": 2773,
     "assets/og-cover.png": 250419,
     "assets/apple-touch-icon.png": 25152
   }
