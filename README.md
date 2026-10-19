@@ -1,8 +1,42 @@
-# THE UNSEEN · Volume V: RUPTURE
+# THE UNSEEN · Volume VI: HDR RUPTURE
 
 An intense 16-act generative audiovisual performance (eight geometric universes reconfigured into new stages) inspired by the October 2026 preprint [*Rapid alternation of conscious and suppressed stimulus representations in the primate brain*](https://doi.org/10.64898/2026.10.15.759299) by Hesse and colleagues.
 
 **Live public GitHub Pages URL:** https://llm-i-am.github.io/the-unseen/
+
+## Volume VI — Safari-native HDR RUPTURE
+
+**The default renderer is now a new full-frame WebGPU implementation**, designed specifically for **iOS 26 Safari**. Earlier versions drew primarily to an SDR WebGL canvas and used a small WebGPU HDR highlight overlay; Volume VI makes the *entire image* a 16-bit floating-point WebGPU canvas. The old WebGL scene stays as a fallback.
+
+The primary canvas requests:
+
+\`\`\`js
+context.configure({
+  device,
+  format: "rgba16float",
+  colorSpace: "display-p3",
+  alphaMode: "opaque",
+  toneMapping: { mode: "extended" }
+});
+\`\`\`
+
+The WGSL shader emits pixel values above ordinary SDR white for finely distributed luminous caustics while preserving dark regions for contrast. The display/headroom decides how much real luminance is available. **There is no such thing as requesting "110% HDR brightness" from Safari**: the phone's hardware, OS tone mapping, and current brightness limit the result. A successful configuration also does **not** verify measured luminance.
+
+The implementation explicitly uses \`dynamic-range-limit: no-limit\` for the WebGPU layer, WebGPU/Display-P3 feature detection, GPU-device-loss fallback, and adaptive resolution. On iOS hardware without WebGPU, in private/restricted contexts, or without HDR headroom, the existing WebGL version remains functional. Safari 26.0's release notes explicitly include WebGPU and HDR support in WebGPU canvas.
+
+The composition is **HUDless from the moment the user enters**. No chapter labels, buttons, progress bar, or breathing overlay interrupt the image. Double-tap anywhere or touch with two fingers to reveal controls; press Escape on a keyboard. Pausing, muting, gentler motion, and exiting remain possible. Audio requires the entry tap per browser policy.
+
+All 16 acts are now **7–8 seconds long**, continuously looping. Optical transformations and procedural sound keep moving without breath-counting or long prose delays.
+
+- \`src/hdr6-shader.js\`: new WGSL optical renderer; eight scene families, labyrinth recursion, concentric mirror structures, optical flow, refractive high-range caustics, moving portals and spatial interference.
+- \`src/hdr6-engine.js\`: Safari-native 16f P3 EDR device/pipeline/controller, self-adjusting rendering resolution, and fallback recovery.
+- \`hdr6.css\`: explicit HDR compositing and zero-distraction display.
+- \`tests/hdr6-gpu-test.cjs\`: attempts actual software-WebGPU WGSL shader compilation, reporting unsupported CI environments honestly.
+- \`tests/browser-smoke.cjs\`: desktop/mobile gesture and runtime checks.
+
+Reference materials: [Safari 26 release notes](https://developer.apple.com/documentation/safari-release-notes/safari-26-release-notes), [WebKit Safari 26 feature review](https://webkit.org/blog/17333/webkit-features-in-safari-26-0/), [MDN GPUCanvasContext configuration](https://developer.mozilla.org/en-US/docs/Web/API/GPUCanvasContext/configure), [Apple's EDR headroom documentation](https://developer.apple.com/videos/play/wwdc2022/10113/), and [W3C flashing-content limits](https://www.w3.org/WAI/WCAG22/Understanding/three-flashes-or-below-threshold).
+
+**Scope of verification:** automated Chromium tests cannot prove Safari-specific HDR luminance. Confirm actual highlights on a physical iOS 26 HDR-capable iPhone using Safari; compare standard/extended tone-mapping conditions and display brightness. The paper inspiring this artwork describes neural representations in macaque experiments, not a human brain "refresh rate" or display stimulation protocol.
 
 ## Volume V — RUPTURE: No Safe Center
 
