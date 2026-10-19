@@ -23,6 +23,11 @@ jobs:
           node --check src/audio.js
           node --check src/app.js
           node --check src/immersion.js
+          node --check src/hyperfield.js
+          node --check src/hyperaudio.js
+          node --check src/paradox.js
+          node --check src/hyperbridge.js
+          node --check src/constellation.js
       - name: Verify essential social metadata and assets
         run: |
           python3 - <<'PY'
