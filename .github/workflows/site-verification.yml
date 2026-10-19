@@ -22,6 +22,7 @@ jobs:
           node --check src/shaders.js
           node --check src/audio.js
           node --check src/app.js
+          node --check src/immersion.js
       - name: Verify essential social metadata and assets
         run: |
           python3 - <<'PY'
@@ -29,7 +30,7 @@ jobs:
           html=Path('index.html').read_text()
           for key in ['og:image','og:title','twitter:card','apple-touch-icon','manifest.webmanifest','src/app.js','src/shaders.js','src/audio.js']:
               assert key in html,key
-          for p in ['style.css','manifest.webmanifest','assets/favicon.svg','assets/artwork/share.svg']:
+          for p in ['style.css','immersive.css','src/immersion.js','manifest.webmanifest','assets/favicon.svg','assets/artwork/share.svg']:
               assert Path(p).exists(),p
           assert html.count('data-mode=')==8
           print('Static site verification passed')
