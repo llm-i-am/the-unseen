@@ -20,7 +20,7 @@ window.UnseenAudio=class UnseenAudio {
   // Algorithmic room impulse: randomized, decaying stereo reflections, bandwidth softened.
   const length=Math.round(ac.sampleRate*2.8),ir=ac.createBuffer(2,length,ac.sampleRate);
   for(let ch=0;ch<2;ch++){let dat=ir.getChannelData(ch),seed=ch?1729:4141,last=0;for(let n=0;n<length;n++){seed=(1664525*seed+1013904223)>>>0;let v=seed/4294967295*2-1;last=last*.32+v*.68;dat[n]=last*Math.exp(-n/(ac.sampleRate*.51))*.58;}}
-  const conv=ac.createConvolver();conv.buffer=ir;this.wet=ac.createGain();this.wet.gain.value=.35;conv.connect(this.wet);this.wet.connect(this.master);
+  const conv=ac.createConvolver();conv.buffer=ir;this.reverbInput=conv;this.wet=ac.createGain();this.wet.gain.value=.35;conv.connect(this.wet);this.wet.connect(this.master);
   const dry=ac.createGain();dry.gain.value=.64;dry.connect(this.master);this.dry=dry;
   const pingL=ac.createDelay(2),pingR=ac.createDelay(2),feedbackL=ac.createGain(),feedbackR=ac.createGain(),pingMix=ac.createGain();
   pingL.delayTime.value=.371;pingR.delayTime.value=.517;feedbackL.gain.value=.23;feedbackR.gain.value=.21;pingMix.gain.value=.21;
@@ -59,12 +59,13 @@ window.UnseenAudio=class UnseenAudio {
   }
   this.retune(0);
   this.setSpace(.68);
+  this.initHyper?.();
  }
  retune(scene=0){if(!this.ac)return;const n=this.ac.currentTime,notes=this.modes[scene]||this.modes[0];
-  this.voices.forEach(v=>{const f=73.42*Math.pow(2,notes[v.i]/12);v.primary.frequency.setTargetAtTime(f,n,2.1);v.second.frequency.setTargetAtTime(f*2.002,n,2.4)});}
+  this.voices.forEach(v=>{const f=73.42*Math.pow(2,notes[v.i]/12);v.primary.frequency.setTargetAtTime(f,n,2.1);v.second.frequency.setTargetAtTime(f*2.002,n,2.4)});this.retuneHyper?.(scene);}
  setSpace(x){if(!this.ac)return;const n=this.ac.currentTime;this.wet.gain.setTargetAtTime(.11+.45*x,n,.25);this.dry.gain.setTargetAtTime(.65-.12*x,n,.25);}
  setVolume(x){this.volume=x;if(this.ac&&this.active)this.master.gain.setTargetAtTime(.03+.18*x,this.ac.currentTime,.15)}
- async toggle(on){try{if(!this.ac)this.init();await this.ac.resume();this.active=on===undefined?!this.active:!!on;this.master.gain.cancelScheduledValues(this.ac.currentTime);this.master.gain.setTargetAtTime(this.active?.03+.18*(this.volume??.46):0,this.ac.currentTime,.18);return this.active}catch(e){console.warn("Audio failed",e);return false}}
+ async toggle(on){try{if(!this.ac)this.init();await this.ac.resume();this.active=on===undefined?!this.active:!!on;this.master.gain.cancelScheduledValues(this.ac.currentTime);this.master.gain.setTargetAtTime(this.active?.03+.18*(this.volume??.46):0,this.ac.currentTime,.18);if(this.active)this.transitionChime?.(0);return this.active}catch(e){console.warn("Audio failed",e);return false}}
  update(t,scene,stateA,stateB,flux,space,px){
   if(!this.ac||!this.active||t-this.last<.055)return 0;this.last=t;
   const now=this.ac.currentTime;
@@ -80,14 +81,23 @@ window.UnseenAudio=class UnseenAudio {
    v.primary.detune.setTargetAtTime(breath*5+stateA*1.6*flux,now,.17);
   });
   this.noise.forEach((n,i)=>{n.pan.pan.setTargetAtTime(Math.sin(t*.1+i*2.4)*space,now,.3);n.gain.gain.setTargetAtTime((i?.016:.021)*(1+.25*Math.sin(t*.3+i)),now,.35)});
-  this.anal.getByteFrequencyData(this.freq);let sum=0;for(let i=1;i<28;i++)sum+=this.freq[i];return Math.min(1,sum/(27*160));
+  this.updateHyper?.(t,scene,stateA,stateB,space,px);
+   this.anal.getByteFrequencyData(this.freq);let sum=0;for(let i=1;i<28;i++)sum+=this.freq[i];return Math.min(1,sum/(27*160));
+ }
+ getSpectrum(){
+  if(!this.ac||!this.active||!this.anal)return [0,0,0,0];
+  this.anal.getByteFrequencyData(this.freq);
+  const bands=[[1,6],[6,16],[16,35],[35,68]];
+  if(!this.spectrum)this.spectrum=[0,0,0,0];
+  bands.forEach(([a,b],i)=>{let sum=0;for(let k=a;k<Math.min(b,this.freq.length);k++)sum+=this.freq[k];const next=Math.min(1,sum/((b-a)*105));this.spectrum[i]=this.spectrum[i]*.80+next*.20;});
+  return this.spectrum;
  }
  /* Breathing follows a slow visual envelope; never pulses at micro-epoch frequencies. */
  setBreath(level){
   if(!this.ac||!this.active)return;
   const n=this.ac.currentTime,amount=Math.max(0,Math.min(1,level));
   if(n-(this.lastBreathUpdate??-1)<.08)return;
-  this.lastBreathUpdate=n;
+  this.lastBreathUpdate=n;this.setBreathHyper?.(level);
   this.noise.forEach((v,i)=>{
    v.filter.frequency.setTargetAtTime((i?420:160)+(i?780:260)*amount,n,.27);
   });
