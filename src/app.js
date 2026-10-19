@@ -150,15 +150,15 @@
   if(!s.paused&&!s.reduced)time+=dt;
   const onOff=cortical(dt);
   beat=audio.update(time,s.mode,patches[0].smoothed,patches[1].smoothed,s.flux,s.space,pointer[0])||beat*.99;
-  if(gl&&prg){
+  if(gl&&prg&&!s.hdrPrimary){
    gl.useProgram(prg);
    gl.uniform2f(u.Resolution,cn.width,cn.height);gl.uniform2f(u.Pointer,pointer[0],pointer[1]);
    // Touch location mapped into shader world coordinates.
    gl.uniform2f(u.TouchPoint,(touchPoint[0]-.5)*(cn.width/Math.min(cn.width,cn.height))*1.42,(touchPoint[1]-.5)*(cn.height/Math.min(cn.width,cn.height))*1.42);
    for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:(s.speed||1),Anaglyph:s.anaglyph?1:0,Breath:s.breath}))gl.uniform1f(u[name],v);
    gl.drawArrays(gl.TRIANGLES,0,3);
-  }else draw2D();
-  renderHDR();drawRaster(dt);
+  }else if(!s.hdrPrimary)draw2D();
+  if(!s.hdrPrimary)renderHDR();drawRaster(dt);
  }
  function setToggle(id,on){$(id).setAttribute("aria-pressed",String(on))}
  function toggleTour(on){tourOn=!!on;clearInterval(tourTimer);setToggle("tourBtn",tourOn);$("tourBtn").querySelector("span").textContent=tourOn?"STOP ODYSSEY":"ODYSSEY TOUR";if(tourOn){tourTimer=setInterval(()=>{if(!s.paused&&!document.hidden)setMode((s.mode+1)%8)},13000);toast("Odyssey engaged — eight worlds, one journey")}else toast("Odyssey paused")}
@@ -215,7 +215,7 @@
   cn.addEventListener("webglcontextrestored",()=>{gl=null;prg=null;initGL()});
  }
  window.UNSEEN_RUNTIME={state:s,setMode,enableAudio:()=>setAudio(true),disableAudio:()=>setAudio(false),audio,setHDR,setReduce,resize,stopTour:()=>{if(tourOn)toggleTour(false)},hdrReady:()=>gpuReady};
- install();initGL();initHDR().then(ok=>{if(ok&&!s.reduced){s.hdr=true;hdr.style.display="block";setToggle("hdrBtn",true);setText("backend",backend+" · HDR");}});
+ install();initGL();if(!window.UNSEEN_HDR6_ENABLED)initHDR().then(ok=>{if(ok&&!s.reduced){s.hdr=true;hdr.style.display="block";setToggle("hdrBtn",true);setText("backend",backend+" · HDR");}});
  requestAnimationFrame(render);
  setTimeout(()=>$("titlebox").classList.add("hide"),6900);
 })();
