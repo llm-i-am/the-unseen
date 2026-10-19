@@ -53,7 +53,7 @@ document.body.insertAdjacentHTML("beforeend",startMarkup);
 
 let running=false,paused=false,elapsed=0,last=performance.now(),section=-1,prevPhase="",lastMode=-1;
 let wake=null,menu=false,audioEnabled=true,guide=true,comfort=reduced,pace=[4,6],poemUntil=0;
-let previousScene=0;
+let sceneOffset=0;
 const prompts=[
  "You are here.",
  "What you notice is not all that exists.",
@@ -112,6 +112,7 @@ function onBegin(withSound){
  audio.setSpace?.(.88);
  s.decode=false;s.paused=false;
  s.breath=.5;
+ sceneOffset=0;
  $("rightTelemetry").classList.add("off");
  document.body.classList.add("experience-live");
  $("immersionGate").setAttribute("aria-hidden","true");
@@ -150,7 +151,7 @@ function setComfort(val){
  s.breath=comfort?.5:s.breath;
  if(comfort){s.hdr=false;$("hdr").style.display="none";}
  // When restoring full intensity, re-enable the already initialized HDR layer.
- else if($("hdrBtn").getAttribute("aria-pressed")==="true"||runtime.hdrReady?.()){s.hdr=!!runtime.hdrReady?.();$("hdr").style.display=s.hdr?"block":"none";}
+ else if(runtime.hdrReady()){s.hdr=true;$("hdr").style.display="block";}
  updateText("imComfort",comfort?"Full intensity ✧":"Gentler motion ◯");
 }
 function phaseAt(sec){
@@ -190,8 +191,8 @@ function frameState(sec,now){
  }
  $("imProgress").style.transform="scaleX("+Math.max(.001,p.progress).toFixed(5)+")";
  const act=Math.min(7,Math.floor(sec/42.5));
- if(sec<340)chooseScene(act);
- else if(sec>360){chooseScene((7+Math.floor((sec-340)/45))%8);}
+ if(sec<340)chooseScene((act+sceneOffset)%8);
+ else if(sec>360){chooseScene((7+sceneOffset+Math.floor((sec-340)/45))%8);}
  if(poemUntil&&sec>poemUntil){$("imPoem").classList.remove("visible");poemUntil=0}
  if(sec>342&&section!==99){section=99;showPoem("Carry this quiet with you.",10)}
  if(!guide)$("imBreathOrb").style.opacity="0";
@@ -213,11 +214,11 @@ $("imSilent").addEventListener("click",()=>onBegin(false));
 $("imMenuBtn").addEventListener("click",()=>menuState(!menu));
 $("imPause").addEventListener("click",()=>{resumePause();menuState(false)});
 $("imSound").addEventListener("click",()=>{setSound(!audioEnabled);menuState(false)});
-$("imBreath").addEventListener("click",()=>{guide=!guide;document.body.classList.toggle("im-no-guide",!guide);menuState(false)});
+$("imBreath").addEventListener("click",()=>{guide=!guide;document.body.classList.toggle("im-no-guide",!guide);updateText("imBreath",guide?"Hide breathing cue ◌":"Show breathing cue ◌");menuState(false)});
 $("imPace").addEventListener("click",()=>{pace=pace[0]===4?[5,5]:[4,6];updateText("imPace",pace[0]===4?"Use 5 / 5 pace ≈":"Use 4 / 6 pace ≈");menuState(false)});
 $("imComfort").addEventListener("click",()=>{setComfort(!comfort);menuState(false)});
-$("imNext").addEventListener("click",()=>{chooseScene(lastMode+1);menuState(false)});
-$("imRestart").addEventListener("click",()=>{elapsed=0;lastMode=-1;prevPhase="";last=performance.now();chooseScene(0);menuState(false)});
+$("imNext").addEventListener("click",()=>{sceneOffset=(sceneOffset+1)%8;chooseScene(lastMode+1);menuState(false)});
+$("imRestart").addEventListener("click",()=>{elapsed=0;sceneOffset=0;lastMode=-1;prevPhase="";last=performance.now();chooseScene(0);menuState(false)});
 $("imScience").addEventListener("click",()=>{$("help").click();menuState(false)});
 $("imExit").addEventListener("click",end);
 document.addEventListener("keydown",e=>{
