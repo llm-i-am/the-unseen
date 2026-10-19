@@ -4,6 +4,16 @@ An interactive, eight-world audiovisual observatory inspired by the October 2026
 
 **Expected public Pages URL (after you enable Pages):** https://llm-i-am.github.io/the-unseen/
 
+## Volume III: The Immersive Journey
+
+**One tap → full-bleed universe.** All intensity, geometry, depth, and the available HDR highlight path are automatically enabled. The screen uses a minimal breathing halo, a gentle in/out instruction, and a small hidden controls menu. The rich diagnostics and toolbars from Volume II no longer appear during the journey.
+
+A five-minute, approximately 6-breaths-per-minute practice uses 4-second gentle inhales and 6-second unforced exhales. Its pacing reflects the evidence for slow breathing around 0.1 Hz and exhale-focused breathing, **not a clinical finding of optimal 4/6 timing nor proven synergy with the paper’s neural switching**. There are no required breath holds, extreme inhalations, or fast flashes. Alternate equal 5/5 timing and reduced-motion comfort are available from the discreet menu. Every visual world smoothly morphs with the breath, while the procedural soundtrack breathes with it.
+
+On modern iOS Safari, arbitrary sites cannot force-hide the browser bars. Use **Share → Add to Home Screen → Open as Web App** for the most immersive edge-to-edge experience. On supported browsers the app attempts fullscreen on the direct user entry gesture, requests a screen wake lock, and requests WebGPU HDR rendering automatically. These are capability-dependent and may be declined by platform policies.
+
+For a research-oriented comparison, see [Cell Reports Medicine, 2023: brief exhale-focused breathwork](https://doi.org/10.1016/j.xcrm.2022.100895), and [Shao et al. (2024): meta-analysis on slow breathing](https://doi.org/10.1007/s12671-023-02294-2).
+
 ## Experience
 
 Eight original GPU worlds: Aperture, Rivalry, Multiplex, Ghost, Cathedral, Fold, Neural Sea, and Event Horizon. Sixteen procedural oscillators, two moving noise beds, stereo panning, delays, generated convolution reverb, filter automation, an audio-reactive shader, and pointer-triggered sonic gestures. Entirely original vanilla JS, GLSL, WGSL, CSS and HTML: no CDN, no video, no prerecorded music, no APIs or bundler.
@@ -18,7 +28,7 @@ The study did **not** show that human consciousness has a 15/16 Hz display refre
 
 Move the pointer to bend space, tap to create light and tones, or choose any of the eight scenes. Press **1–8** for modes, **M** for sound, **H** for settings, **F** for fullscreen or **Space** for pause. Customize density, depth, interference, energy, epoch median, patch coupling, auditory spaciousness and sound volume. Color presets: Abyss / Aurora / Ember. Reduced motion is available and respects system preference.
 
-Optional true HDR: an independent extended-tone-mapping WebGPU `rgba16float` light pass. Actual HDR requires supporting browser, graphics hardware and screen. WebGL2 is the main canvas, with a Canvas2D fallback.
+Automatically attempted true HDR (where supported): an independent extended-tone-mapping WebGPU `rgba16float` light pass. Actual HDR requires supporting browser, graphics hardware and screen. WebGL2 is the main canvas, with a Canvas2D fallback.
 
 **Comfort:** moving geometry and spatial sound may cause discomfort. Use comfortable volume/brightness, especially on HDR screens, and stop if uncomfortable.
 
