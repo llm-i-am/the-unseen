@@ -9,7 +9,7 @@ fragment: `#version 300 es
 precision highp float;
 out vec4 outColor;
 uniform vec2 uResolution,uPointer,uTouchPoint;
-uniform float uTime,uMode,uEnergy,uDensity,uDepth,uFlux,uStateA,uStateB,uOnOff,uBand,uBeat,uTouchAge,uPalette,uSpeed,uAnaglyph;
+uniform float uTime,uMode,uEnergy,uDensity,uDepth,uFlux,uStateA,uStateB,uOnOff,uBand,uBeat,uTouchAge,uPalette,uSpeed,uAnaglyph,uBreath;
 #define PI 3.141592653589793
 #define TAU 6.283185307179586
 float sat(float x){return clamp(x,0.,1.);}
@@ -170,7 +170,7 @@ void main(){
  uv*=1.42;uv.x+=(uPointer.x-.5)*uDepth*.12;uv.y+=(uPointer.y-.5)*uDepth*.12;
  float t=uTime*uSpeed;float a=uStateA,b=uStateB;
  // Patch states influence local orientation, not frame-wide illumination.
- vec2 p=rot(uv,.016*a*uFlux+.025*b*uFlux);
+ vec2 p=rot(uv*(1.07-.14*uBreath),.016*a*uFlux+.025*b*uFlux);
  float region=uMode;
  vec3 col=vec3(0.);
  if(region<.5)col=aperture(p,t,a,b);
