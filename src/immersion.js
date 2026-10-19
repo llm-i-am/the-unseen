@@ -102,6 +102,8 @@ function chooseScene(index){
 }
 function onBegin(withSound){
  if(running)return;
+ document.body.classList.add("experience-live");
+ $("toast").classList.remove("on");
  // Invoke audio resume and fullscreen while handling the actual pointer/click gesture.
  audioEnabled=withSound;
  if(withSound)runtime.enableAudio();else runtime.disableAudio();
