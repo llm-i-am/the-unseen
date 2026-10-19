@@ -32,6 +32,8 @@ jobs:
           node --check src/riot-audio.js
           node --check src/rupture-experience.js
           node --check src/memory-mosh.js
+          node --check src/hdr6-shader.js
+          node --check src/hdr6-engine.js
       - name: Verify essential social metadata and assets
         run: |
           python3 - <<'PY'
