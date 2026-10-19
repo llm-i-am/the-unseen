@@ -82,6 +82,26 @@ window.UnseenAudio=class UnseenAudio {
   this.noise.forEach((n,i)=>{n.pan.pan.setTargetAtTime(Math.sin(t*.1+i*2.4)*space,now,.3);n.gain.gain.setTargetAtTime((i?.016:.021)*(1+.25*Math.sin(t*.3+i)),now,.35)});
   this.anal.getByteFrequencyData(this.freq);let sum=0;for(let i=1;i<28;i++)sum+=this.freq[i];return Math.min(1,sum/(27*160));
  }
+ /* Breathing follows a slow visual envelope; never pulses at micro-epoch frequencies. */
+ setBreath(level){
+  if(!this.ac||!this.active)return;
+  const n=this.ac.currentTime,amount=Math.max(0,Math.min(1,level));
+  this.noise.forEach((v,i)=>{
+   v.filter.frequency.setTargetAtTime((i?420:160)+(i?780:260)*amount,n,.27);
+  });
+ }
+ breathCue(inhale){
+  if(!this.ac||!this.active)return;
+  const ac=this.ac,n=ac.currentTime;
+  const g=ac.createGain(),o=ac.createOscillator(),p=ac.createStereoPanner();
+  o.type="sine";o.frequency.setValueAtTime(inhale?392:329.63,n);
+  o.frequency.exponentialRampToValueAtTime(inhale?440:293.66,n+.72);
+  p.pan.setValueAtTime(inhale?-.24:.24,n);
+  g.gain.setValueAtTime(.0001,n);
+  g.gain.exponentialRampToValueAtTime(.012,n+.14);
+  g.gain.exponentialRampToValueAtTime(.0001,n+1.85);
+  o.connect(g);g.connect(p);p.connect(this.master);o.start(n);o.stop(n+1.88);
+ }
  impulse(pitch=0){
   if(!this.ac||!this.active)return;const ac=this.ac,n=ac.currentTime;
   // Interaction event: a soft, pitched bead through reverb and space.
