@@ -7,7 +7,7 @@
  const cn=$("stage"),hdr=$("hdr"),strip=$("raster"),paint=strip.getContext("2d");
  const mobile=matchMedia("(max-width:780px)").matches;
  const motionPref=matchMedia("(prefers-reduced-motion: reduce)");
- const s={mode:0,density:.76,depth:.82,flux:.68,energy:.74,dwell:64,coupling:.18,space:.68,volume:.46,paused:false,reduced:motionPref.matches,palette:0,hdr:false,decode:true,anaglyph:false};
+ const s={mode:0,density:1,depth:1,flux:1,energy:1,dwell:64,coupling:.18,space:.88,volume:.42,breath:.5,paused:false,reduced:motionPref.matches,palette:0,hdr:false,decode:false,anaglyph:false};
  let gl=null,prg=null,u={},ctx2d=null,device=null,gpuctx=null,gpupipe=null,gpubind=null,gpubuf=null,gpuReady=false,backend="INITIALIZING";
  const audio=new UnseenAudio();audio.volume=s.volume;
  let time=0,last=performance.now(),tick=0,frames=0,acc=0,fps=60,quality=mobile?.68:.86,clip=1,tourTimer=0,tourOn=false;
@@ -50,7 +50,7 @@
    let v=shader(gl.VERTEX_SHADER,UNSEEN_SHADERS.vertex),f=shader(gl.FRAGMENT_SHADER,UNSEEN_SHADERS.fragment);
    prg=gl.createProgram();gl.attachShader(prg,v);gl.attachShader(prg,f);gl.linkProgram(prg);gl.deleteShader(v);gl.deleteShader(f);
    if(!gl.getProgramParameter(prg,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(prg));
-   for(let n of ["Resolution","Pointer","TouchPoint","Time","Mode","Energy","Density","Depth","Flux","StateA","StateB","OnOff","Band","Beat","TouchAge","Palette","Speed","Anaglyph"])u[n]=gl.getUniformLocation(prg,"u"+n);
+   for(let n of ["Resolution","Pointer","TouchPoint","Time","Mode","Energy","Density","Depth","Flux","StateA","StateB","OnOff","Band","Beat","TouchAge","Palette","Speed","Anaglyph","Breath"])u[n]=gl.getUniformLocation(prg,"u"+n);
    const vao=gl.createVertexArray();gl.bindVertexArray(vao);
    backend=gl.drawingBufferColorSpace==="display-p3"?"WEBGL2 · DISPLAY P3":"WEBGL2 · SDR";setText("backend",backend);
   }catch(e){console.warn("WebGL2 fallback:",e);try{ctx2d=cn.getContext("2d",{alpha:false})}catch{};backend="CANVAS2D · FALLBACK";setText("backend",backend);}
@@ -155,7 +155,7 @@
    gl.uniform2f(u.Resolution,cn.width,cn.height);gl.uniform2f(u.Pointer,pointer[0],pointer[1]);
    // Touch location mapped into shader world coordinates.
    gl.uniform2f(u.TouchPoint,(touchPoint[0]-.5)*(cn.width/Math.min(cn.width,cn.height))*1.42,(touchPoint[1]-.5)*(cn.height/Math.min(cn.width,cn.height))*1.42);
-   for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:1,Anaglyph:s.anaglyph?1:0}))gl.uniform1f(u[name],v);
+   for(let [name,v] of Object.entries({Time:time,Mode:s.mode,Energy:s.energy,Density:s.density,Depth:s.depth,Flux:s.flux,StateA:patches[0].smoothed,StateB:patches[1].smoothed,OnOff:onOff,Band:beat,Beat:0,TouchAge:time-lastTouch,Palette:s.palette,Speed:s.reduced?0:1,Anaglyph:s.anaglyph?1:0,Breath:s.breath}))gl.uniform1f(u[name],v);
    gl.drawArrays(gl.TRIANGLES,0,3);
   }else draw2D();
   renderHDR();drawRaster(dt);
@@ -214,7 +214,8 @@
   cn.addEventListener("webglcontextlost",e=>{e.preventDefault();prg=null;setText("backend","RESTARTING GPU")});
   cn.addEventListener("webglcontextrestored",()=>{gl=null;prg=null;initGL()});
  }
- install();initGL();initHDR().then(ok=>{if(ok)toast("HDR-capable renderer detected; enable it in controls")});
+ window.UNSEEN_RUNTIME={state:s,setMode,enableAudio:()=>setAudio(true),disableAudio:()=>setAudio(false),audio,setHDR,setReduce,resize,stopTour:()=>{if(tourOn)toggleTour(false)}};
+ install();initGL();initHDR().then(ok=>{if(ok&&!s.reduced){s.hdr=true;hdr.style.display="block";setToggle("hdrBtn",true);setText("backend",backend+" · HDR");}});
  requestAnimationFrame(render);
  setTimeout(()=>$("titlebox").classList.add("hide"),6900);
 })();
