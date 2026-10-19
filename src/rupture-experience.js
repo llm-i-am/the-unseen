@@ -144,5 +144,5 @@ document.addEventListener("pointerup",event=>{
  if(close&&now-lastTap<350){toggleMenu(!menu);lastTap=0;}
  else{lastTap=now;lastTapX=event.clientX;lastTapY=event.clientY;}
 },{passive:true});
-window.UNSEEN_IMMERSION={get running(){return running},get elapsed(){return elapsed},get mode(){return chapter},get paused(){return paused},get soundEnabled(){return sound},get intensity(){return intensity},get reduced(){return comfort},get version(){return 5}};
+window.UNSEEN_IMMERSION={get running(){return running},get elapsed(){return elapsed},get mode(){return chapter},get paused(){return paused},get soundEnabled(){return sound},get intensity(){return intensity},get reduced(){return comfort},get version(){return 6}};
 })();
