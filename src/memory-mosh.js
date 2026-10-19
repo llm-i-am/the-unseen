@@ -38,7 +38,8 @@ function draw(now){
    for(let i=0;i<3;i++){
      const y=rand()*h,rw=w*(.16+rand()*.24),rh=h*(.006+rand()*.014);
      const sx=rand()*Math.max(1,w-rw),sy=rand()*Math.max(1,h-rh);
-     back.drawImage(stage,sx/stage.width*stage.width,sy/h*stage.height,rw/w*stage.width,rh/h*stage.height,
+     const activeSource=window.UNSEEN_HDR6?.ready?window.UNSEEN_HDR6.canvas:stage;
+     back.drawImage(activeSource,sx/w*activeSource.width,sy/h*activeSource.height,rw/w*activeSource.width,rh/h*activeSource.height,
        sx+(rand()-.5)*w*.11,y,rw,rh*1.5);
    }
    back.globalAlpha=1;
